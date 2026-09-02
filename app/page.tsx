@@ -29,7 +29,7 @@ export default function Home() {
             <div>
               <div className="mb-6 flex flex-wrap items-center gap-3 text-[10px] font-bold uppercase tracking-[0.14em] text-paper/60">
                 <span className="border border-paper/25 px-2 py-1 text-paper">{researchData.meta.status}</span>
-                <span>Evidence through 02 Sep 2026</span>
+                <span>Evidence through 03 Sep 2026</span>
                 <span aria-hidden="true" className="size-1 bg-signal" />
                 <span>v{researchData.meta.version}</span>
               </div>

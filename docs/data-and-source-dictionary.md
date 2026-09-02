@@ -11,11 +11,11 @@ Version 0.1.0 contains:
 | Timeline events | 8 |
 | Cases | 5 |
 | Evidence records | 19 |
-| Sources | 32 |
-| Sources marked primary | 30 |
+| Sources | 33 |
+| Sources marked primary | 31 |
 | Sources marked non-primary | 2 |
 
-The evidence cutoff and common access date are 2 September 2026.
+The evidence cutoff and common access date are 3 September 2026.
 
 ## Files and authority
 

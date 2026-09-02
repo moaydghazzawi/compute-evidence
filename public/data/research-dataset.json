@@ -5,8 +5,8 @@
     "question": "Since October 2022, which Chinese responses have actually weakened U.S. controls on advanced AI chips, and which have only made Chinese AI development more expensive, slower, or more dependent on outside technology?",
     "version": "0.1.0",
     "status": "Defensible MVP",
-    "evidenceThrough": "2026-09-02",
-    "accessed": "2026-09-02",
+    "evidenceThrough": "2026-09-03",
+    "accessed": "2026-09-03",
     "currentFinding": "One response weakens a narrow control point; none proves system-wide independence.",
     "summary": "The public record shows meaningful adaptation, one narrow case of functional substitution, and real enforcement leakage. It does not show that Chinese developers have escaped the cost, scale, or supply-chain consequences of U.S. controls.",
     "conversationSummary": "Chinese AI progress is real, but progress and control failure are not synonyms. DeepSeek-V3 shows that efficient model and systems design can stretch a restricted Nvidia H800 fleet. Huawei’s Pangu Ultra shows that thousands of domestic Ascend accelerators can complete a very-large-model training run, weakening the narrow claim that access to top U.S. accelerators is indispensable. CloudMatrix384 shows that system design can recover useful inference performance by pooling many weaker devices. A U.S. prosecution shows that restricted H100 and H200 chips also moved through a diversion network. Each result carries a different implication. The Huawei cases still leave fabrication, high-bandwidth memory, power, networking, and economics unresolved. DeepSeek remained dependent on controlled foreign hardware. Smuggling is an enforcement failure, not technological independence. The strongest current reading is that the controls impose friction and shift costs rather than create an absolute barrier—and that only repeated, independently verified scale can show whether that friction is durable."
@@ -139,12 +139,13 @@
       "displayDate": "13 Jan 2025",
       "title": "AI Diffusion Framework issued",
       "summary": "Added worldwide regional-stability licensing for the most advanced chips and controls on certain closed-weight model weights, with country tiers and exceptions.",
-      "status": "Not enforced; formal rescission pending",
-      "caveat": "Commerce announced non-enforcement and intended rescission on 13 May 2025 before compliance began; that was not a final legal repeal.",
+      "status": "AI Diffusion requirements not enforced; formal rescission pending",
+      "caveat": "Commerce announced non-enforcement and intended rescission before compliance began; preexisting D:5/Macau-headquarters controls remain enforced worldwide.",
       "sourceIds": [
         "fr-2025-00636",
         "bis-2025-05-13-diffusion",
-        "gao-b-337935"
+        "gao-b-337935",
+        "bis-guidance-2026-05-31"
       ]
     },
     {
@@ -180,7 +181,7 @@
       "title": "Listed-entity affiliate rule issued, then suspended",
       "summary": "Extended certain end-user restrictions to entities owned 50 percent or more by listed parties and imposed ownership diligence.",
       "status": "Suspended through 09 Nov 2026",
-      "caveat": "The automatic affiliates rule was not operative on this project’s 2 September 2026 cutoff date.",
+      "caveat": "The automatic affiliates rule was not operative on this project’s 3 September 2026 cutoff date.",
       "sourceIds": [
         "fr-2025-19001",
         "fr-2025-19846"
@@ -211,7 +212,7 @@
         "compute-efficiency"
       ],
       "classification": "adaptation-cost",
-      "confidence": "High",
+      "confidence": "Moderate",
       "dependencyStatus": "Foreign-controlled hardware",
       "finding": "Algorithm and systems co-design stretched a restricted H800 fleet, but did not replace the hardware chokepoint.",
       "tests": [
@@ -219,7 +220,7 @@
           "id": "capability",
           "label": "Capability restored",
           "status": "Demonstrated",
-          "answer": "A 671B-parameter mixture-of-experts model delivered strong code, math, science, and chat performance; independent evaluation placed it near models from roughly six months earlier."
+          "answer": "A 671B-parameter mixture-of-experts model delivered strong author-reported benchmark results; on METR’s autonomy suite it was comparable to Claude 3.5 Sonnet (Old) while trailing newer frontier models."
         },
         {
           "id": "scale",
@@ -263,7 +264,8 @@
         "H800 acquisition dates and inventory",
         "Total program and electricity cost",
         "Full-run reproducibility",
-        "Hardware used for later DeepSeek models"
+        "Hardware used for later DeepSeek models",
+        "Whether the efficiency choices were caused by export controls"
       ]
     },
     {
@@ -284,7 +286,7 @@
           "id": "capability",
           "label": "Capability restored",
           "status": "Demonstrated",
-          "answer": "Huawei reports end-to-end training of a 718B-parameter model, with self-reported results near DeepSeek-R1 on several tasks."
+          "answer": "Huawei reports training a 718B-parameter model from scratch on Ascend and says its system supports all training stages, with self-reported results near DeepSeek-R1 on several tasks."
         },
         {
           "id": "scale",
@@ -302,7 +304,7 @@
           "id": "dependency",
           "label": "Outside dependency",
           "status": "Reduced",
-          "answer": "Accelerator design and the main software stack are Chinese. Public evidence does not resolve HBM, fabrication equipment, packaging, optics, or the provenance of every die."
+          "answer": "Ascend and Huawei’s CANN/MindSpeed layers are domestic, but the disclosed stack also uses open-source PyTorch, Transformers, and NVIDIA-origin Megatron-LM. Public evidence does not resolve HBM, fabrication equipment, packaging, optics, or the provenance of every die."
         },
         {
           "id": "enforcement",
@@ -335,7 +337,7 @@
       "title": "CloudMatrix384 serving DeepSeek-R1",
       "shortTitle": "CloudMatrix systems engineering",
       "date": "2025-06-19",
-      "period": "2025–2026",
+      "period": "2025",
       "responseTypes": [
         "systems-engineering"
       ],
@@ -354,7 +356,7 @@
           "id": "scale",
           "label": "Repeatable scale",
           "status": "Partial",
-          "answer": "A production-grade 384-device architecture and production-representative workloads are described, but no independent fleet-volume audit is public."
+          "answer": "Authors describe a 384-NPU production-grade architecture, but performance tests used a 256-NPU subset and fixed benchmark configurations."
         },
         {
           "id": "penalty",
@@ -366,7 +368,7 @@
           "id": "dependency",
           "label": "Outside dependency",
           "status": "Reduced",
-          "answer": "The accelerator, CPU, and primary software stack are Chinese; HBM, fab tools, packaging, and high-speed optics remain unresolved."
+          "answer": "Huawei designed the accelerator, CPU, and CANN layers, while the disclosed stack interoperates with PyTorch, TensorFlow, ONNX, and Kubernetes; HBM, fab tools, packaging, and high-speed optics remain unresolved."
         },
         {
           "id": "enforcement",
@@ -378,14 +380,15 @@
           "id": "future",
           "label": "Next generation",
           "status": "Current inference",
-          "answer": "Evidence is strongest for production inference, not frontier pretraining. It does not remove the need for more efficient future devices."
+          "answer": "Evidence supports vendor-cloud testbed inference, not independently verified production service or frontier pretraining."
         }
       ],
       "evidenceIds": [
         "ev-cloudmatrix-architecture",
         "ev-cloudmatrix-performance",
         "ev-cloudmatrix-limits",
-        "ev-cloudmatrix-power"
+        "ev-cloudmatrix-power",
+        "ev-pangu-upstream"
       ],
       "uncertainties": [
         "Independent reproduction",
@@ -461,7 +464,7 @@
       "id": "case-state-support",
       "title": "Tax preferences and local compute subsidies",
       "shortTitle": "State support evidence gap",
-      "date": "2025-06-13",
+      "date": "2025-06-21",
       "period": "2023–2026",
       "responseTypes": [
         "state-support-stockpiling"
@@ -531,7 +534,7 @@
       "sourceId": "deepseek-v3-report",
       "sourceType": "Technical preprint",
       "publicationDate": "2024-12-27",
-      "accessDate": "2026-09-02",
+      "accessDate": "2026-09-03",
       "quotationOrData": "“2.788M H800 GPU hours.”",
       "location": "Abstract; section 1; Table 1",
       "counterevidence": "The run and benchmarks are author-reported and have not been independently reproduced end to end.",
@@ -548,7 +551,7 @@
       "sourceId": "deepseek-v3-report",
       "sourceType": "Technical preprint",
       "publicationDate": "2024-12-27",
-      "accessDate": "2026-09-02",
+      "accessDate": "2026-09-03",
       "quotationOrData": "Prior research and ablation costs “are not included.”",
       "location": "Section 1, note immediately below Table 1",
       "counterevidence": "The narrow figure remains useful for comparing the disclosed final run if its scope is stated.",
@@ -561,13 +564,13 @@
       "caseIds": [
         "case-deepseek-v3"
       ],
-      "claim": "An independent evaluation found DeepSeek-V3 broadly comparable to leading models released about six months earlier.",
+      "claim": "On METR’s autonomy suite, DeepSeek-V3 was comparable to Claude 3.5 Sonnet (Old), while trailing newer frontier models.",
       "sourceId": "metr-deepseek-v3",
       "sourceType": "Independent evaluation",
       "publicationDate": "2025-02-12",
-      "accessDate": "2026-09-02",
-      "quotationOrData": "“on par with state-of-the-art models from 6 months ago.”",
-      "location": "Summary; autonomy and GPQA sections",
+      "accessDate": "2026-09-03",
+      "quotationOrData": "METR reported comparable autonomy performance to Claude 3.5 Sonnet (Old), with weaker results than newer frontier models.",
+      "location": "Opening findings; General Autonomous Capabilities",
       "counterevidence": "METR used basic elicitation and warned that looping and other failures might understate or distort capability.",
       "confidence": "Moderate",
       "remainingUncertainty": "Benchmark performance is task- and elicitation-dependent and does not establish frontier parity.",
@@ -582,7 +585,7 @@
       "sourceId": "nvidia-2024-10k",
       "sourceType": "Regulatory filing",
       "publicationDate": "2024-02-21",
-      "accessDate": "2026-09-02",
+      "accessDate": "2026-09-03",
       "quotationOrData": "Restrictions on H800 shipments took effect on 23 October 2023.",
       "location": "Item 1, Government Regulations—Global Trade",
       "counterevidence": "DeepSeek may have acquired its H800 fleet before the restriction took effect; acquisition timing is not public.",
@@ -599,7 +602,7 @@
       "sourceId": "deepseek-v3-repository",
       "sourceType": "Company repository",
       "publicationDate": "2024-12-26",
-      "accessDate": "2026-09-02",
+      "accessDate": "2026-09-03",
       "quotationOrData": "The release includes weights and inference examples for Nvidia, AMD, and Ascend.",
       "location": "Repository README, model downloads and inference sections",
       "counterevidence": "Open weights make broad deployment and independent downstream testing possible.",
@@ -612,13 +615,13 @@
       "caseIds": [
         "case-pangu-ultra"
       ],
-      "claim": "Huawei reports completing all training stages for a 718B-parameter MoE on 6,000 Ascend 910B NPUs.",
+      "claim": "Huawei reports a 718B-parameter MoE run on 6,000 Ascend 910B NPUs and says its system supports all training stages.",
       "sourceId": "pangu-ultra-paper",
       "sourceType": "Technical preprint",
       "publicationDate": "2025-05-07",
-      "accessDate": "2026-09-02",
+      "accessDate": "2026-09-03",
       "quotationOrData": "“MFU of 30.0%” on 6,000 Ascend NPUs.",
-      "location": "Abstract; sections 1 and 2.2",
+      "location": "Paper abstract; sections 1 and 2.2",
       "counterevidence": "The run is vendor-reported and has no independent full-training audit or reproduction.",
       "confidence": "Moderate",
       "remainingUncertainty": "Run duration, energy, capital cost, fleet availability, and yield are not disclosed.",
@@ -633,9 +636,9 @@
       "sourceId": "pangu-ultra-paper",
       "sourceType": "Technical preprint",
       "publicationDate": "2025-05-07",
-      "accessDate": "2026-09-02",
+      "accessDate": "2026-09-03",
       "quotationOrData": "6,000 NPUs; 30% MFU; hierarchical all-to-all; recomputation and host swapping.",
-      "location": "Sections 2.2 and 4",
+      "location": "Section 4.5, Table 5",
       "counterevidence": "Thirty percent MFU still implies substantial unused peak compute, and no comparable counterfactual run is public.",
       "confidence": "High",
       "remainingUncertainty": "The incremental burden caused specifically by controls cannot be separated from normal large-model engineering.",
@@ -646,13 +649,13 @@
       "caseIds": [
         "case-pangu-ultra"
       ],
-      "claim": "The official model repository publishes roughly 1.47 TB of weights and documents a minimum 32-card Ascend serving setup.",
+      "claim": "The official model card says Pangu Ultra was trained from scratch; the repository publishes roughly 1.47 TB of weights and documents a minimum 32-card Ascend serving setup.",
       "sourceId": "pangu-ultra-repository",
       "sourceType": "Company repository",
       "publicationDate": null,
-      "accessDate": "2026-09-02",
+      "accessDate": "2026-09-03",
       "quotationOrData": "62 weight shards; four Atlas 800T A2 nodes; 32 64GB cards.",
-      "location": "Model card sections 1, 4.1, and 4.4; file tree",
+      "location": "Model card overview and sections 1, 4.1, and 4.4; file tree",
       "counterevidence": "Serving reproducibility does not reproduce pretraining or validate the disclosed training fleet.",
       "confidence": "High",
       "remainingUncertainty": "The complete training corpus, code, and run configuration are not public.",
@@ -668,7 +671,7 @@
       "sourceId": "bis-gp10-2025",
       "sourceType": "Government guidance",
       "publicationDate": "2025-05-13",
-      "accessDate": "2026-09-02",
+      "accessDate": "2026-09-03",
       "quotationOrData": "The illustrative list names Ascend 910B and 910C.",
       "location": "Pages 1–2, summary, illustrative list, and applicable regulations",
       "counterevidence": "This is an enforcement assessment, not a bill-of-materials audit of the Pangu fleet or CloudMatrix installation.",
@@ -685,7 +688,7 @@
       "sourceId": "cloudmatrix-paper",
       "sourceType": "Technical preprint",
       "publicationDate": "2025-06-19",
-      "accessDate": "2026-09-02",
+      "accessDate": "2026-09-03",
       "quotationOrData": "384 NPUs, 192 CPUs, disaggregated prefill, decode, and caching.",
       "location": "Abstract; sections 3.2–3.4",
       "counterevidence": "The paper is authored by Huawei and SiliconFlow researchers and is not peer reviewed.",
@@ -702,10 +705,10 @@
       "sourceId": "cloudmatrix-paper",
       "sourceType": "Technical preprint",
       "publicationDate": "2025-06-19",
-      "accessDate": "2026-09-02",
+      "accessDate": "2026-09-03",
       "quotationOrData": "1,943 tokens/s/NPU at 49.4 ms; reported efficiency 1.29 tokens/s/TFLOPS.",
       "location": "Section 5.2, Tables 2–4",
-      "counterevidence": "Batch sizes and implementations differ, and the highest prefill result assumes idealized expert load balancing.",
+      "counterevidence": "Tests used 256 of 384 NPUs; decode assumed a 70% MTP acceptance rate; batch sizes and implementations differed; and the highest prefill result assumed idealized expert load balancing.",
       "confidence": "Moderate",
       "remainingUncertainty": "Like-for-like cost, power, reliability, and hardware-count comparisons are unavailable.",
       "relationship": "supports"
@@ -719,7 +722,7 @@
       "sourceId": "cloudmatrix-paper",
       "sourceType": "Technical preprint",
       "publicationDate": "2025-06-19",
-      "accessDate": "2026-09-02",
+      "accessDate": "2026-09-03",
       "quotationOrData": "Throughput fell from 1,943 to 538 tokens/s/NPU as the target tightened from about 50 ms to 15 ms.",
       "location": "Section 5.2, Table 4",
       "counterevidence": "The system still met the stated tighter latency target and maintained useful throughput.",
@@ -736,9 +739,9 @@
       "sourceId": "semianalysis-cloudmatrix",
       "sourceType": "Specialist analysis",
       "publicationDate": "2025-04-16",
-      "accessDate": "2026-09-02",
+      "accessDate": "2026-09-03",
       "quotationOrData": "Estimated 4.1 times the system power of a GB200 NVL72.",
-      "location": "Hardware comparison and networking sections",
+      "location": "Opening comparison; CloudMatrix 384 System Architecture",
       "counterevidence": "The estimate is not metered or audited, and the compared systems differ in chip count and configuration.",
       "confidence": "Low",
       "remainingUncertainty": "No public independent energy, cooling, or total-cost measurement validates the exact multiplier.",
@@ -753,10 +756,10 @@
       "sourceId": "doj-gatekeeper",
       "sourceType": "Government enforcement",
       "publicationDate": "2025-12-08",
-      "accessDate": "2026-09-02",
+      "accessDate": "2026-09-03",
       "quotationOrData": "Conduct spanned October 2024 to May 2025; more than $50 million was seized.",
-      "location": "Paragraphs 1 and 8–10",
-      "counterevidence": "The $160 million figure combines completed and attempted exports; not every person described in the release had been convicted.",
+      "location": "Release summary; paragraph beginning ‘According to court documents’",
+      "counterevidence": "The $160 million figure combines completed and attempted exports; as of the 8 December 2025 release, not every person described had been convicted.",
       "confidence": "High",
       "remainingUncertainty": "The number of chips delivered, ultimate recipients, and resulting AI tasks are not disclosed.",
       "relationship": "supports"
@@ -770,10 +773,10 @@
       "sourceId": "doj-gatekeeper",
       "sourceType": "Government enforcement",
       "publicationDate": "2025-12-08",
-      "accessDate": "2026-09-02",
+      "accessDate": "2026-09-03",
       "quotationOrData": "Labels were removed and replaced with a fictitious company name.",
-      "location": "Paragraphs 15–18",
-      "counterevidence": "Several details come from charging documents and remain allegations against defendants who had not pleaded guilty.",
+      "location": "Paragraphs beginning ‘According to charging documents’ and complaint allegations",
+      "counterevidence": "Several details come from charging documents and, as of the 8 December 2025 release, remained allegations against defendants who had not pleaded guilty.",
       "confidence": "Moderate",
       "remainingUncertainty": "The release does not quantify how common comparable networks are.",
       "relationship": "supports"
@@ -787,7 +790,7 @@
       "sourceId": "bis-diversion-guidance-2025",
       "sourceType": "Government guidance",
       "publicationDate": "2025-05-13",
-      "accessDate": "2026-09-02",
+      "accessDate": "2026-09-03",
       "quotationOrData": "Red flags include freight forwarders, undisclosed end users, foreign IaaS, and infrastructure inconsistent with ordered chips.",
       "location": "Pages 1–5, red flags and due-diligence actions",
       "counterevidence": "Guidance does not establish that every recommended check is implemented or effective in every jurisdiction.",
@@ -800,12 +803,12 @@
       "caseIds": [
         "case-state-support"
       ],
-      "claim": "China continued national tax-preference eligibility for integrated-circuit production, design, equipment, materials, packaging, and major projects in 2024.",
+      "claim": "China continued national tax-preference eligibility for integrated-circuit production, design, materials, packaging, and major projects in 2024.",
       "sourceId": "ndrc-2024-ic-tax",
       "sourceType": "Government policy",
-      "publicationDate": "2024-03-21",
-      "accessDate": "2026-09-02",
-      "quotationOrData": "The eligibility notice covers sub-28nm production and multiple upstream inputs and services.",
+      "publicationDate": "2024-03-22",
+      "accessDate": "2026-09-03",
+      "quotationOrData": "The eligibility notice covers production at 28 nm and below and multiple upstream inputs and services.",
       "location": "Article 1 and attached eligibility criteria",
       "counterevidence": "Eligibility rules do not disclose recipients, award value, additionality, or a capability outcome.",
       "confidence": "High",
@@ -820,8 +823,8 @@
       "claim": "A 2025 Hangzhou policy authorized annual compute vouchers and large-model training support, but no reviewed award record ties that support to DeepSeek-V3.",
       "sourceId": "hangzhou-ai-policy-2025",
       "sourceType": "Government policy",
-      "publicationDate": "2025-06-13",
-      "accessDate": "2026-09-02",
+      "publicationDate": "2025-06-21",
+      "accessDate": "2026-09-03",
       "quotationOrData": "Annual compute-voucher ceiling: CNY 250 million; qualifying model-training support: up to CNY 50 million.",
       "location": "Measures on compute services and large-model training support",
       "counterevidence": "The policy postdates the DeepSeek-V3 release and does not prove DeepSeek received a grant.",
@@ -838,7 +841,7 @@
       "sourceId": "gao-25-107386",
       "sourceType": "Government audit",
       "publicationDate": "2024-12-02",
-      "accessDate": "2026-09-02",
+      "accessDate": "2026-09-03",
       "quotationOrData": "BIS cited avoiding stockpiling as one reason for immediate enforcement.",
       "location": "Highlights; What GAO Found, paragraphs 1–2",
       "counterevidence": "A policy concern is not evidence of actual inventory, intent, ownership, or use by a named Chinese developer.",
@@ -850,12 +853,12 @@
   "sources": [
     {
       "id": "fr-2022-21658",
-      "title": "Implementation of Additional Export Controls: Certain Advanced Computing and Semiconductor Manufacturing Items",
+      "title": "Implementation of Additional Export Controls: Certain Advanced Computing and Semiconductor Manufacturing Items; Supercomputer and Semiconductor End Use; Entity List Modification",
       "organization": "U.S. Bureau of Industry and Security",
       "url": "https://www.federalregister.gov/d/2022-21658",
       "sourceType": "Federal rule",
       "publicationDate": "2022-10-13",
-      "accessDate": "2026-09-02",
+      "accessDate": "2026-09-03",
       "primary": true
     },
     {
@@ -865,17 +868,17 @@
       "url": "https://www.bis.gov/press-release/commerce-implements-new-export-controls-advanced-computing-semiconductor-manufacturing-items-peoples",
       "sourceType": "Government announcement",
       "publicationDate": "2022-10-07",
-      "accessDate": "2026-09-02",
+      "accessDate": "2026-09-03",
       "primary": true
     },
     {
       "id": "fr-2023-23055",
-      "title": "Implementation of Additional Export Controls: Certain Advanced Computing Items; Supercomputer and Semiconductor End Use",
+      "title": "Implementation of Additional Export Controls: Certain Advanced Computing Items; Supercomputer and Semiconductor End Use; Updates and Corrections",
       "organization": "U.S. Bureau of Industry and Security",
       "url": "https://www.federalregister.gov/d/2023-23055",
       "sourceType": "Federal rule",
       "publicationDate": "2023-10-25",
-      "accessDate": "2026-09-02",
+      "accessDate": "2026-09-03",
       "primary": true
     },
     {
@@ -885,37 +888,37 @@
       "url": "https://www.federalregister.gov/d/2023-23049",
       "sourceType": "Federal rule",
       "publicationDate": "2023-10-25",
-      "accessDate": "2026-09-02",
+      "accessDate": "2026-09-03",
       "primary": true
     },
     {
       "id": "fr-2024-28270",
-      "title": "Foreign-Produced Direct Product Rule Additions and Refinements to Advanced-Computing Controls",
+      "title": "Foreign-Produced Direct Product Rule Additions, and Refinements to Controls for Advanced Computing and Semiconductor Manufacturing Items",
       "organization": "U.S. Bureau of Industry and Security",
       "url": "https://www.federalregister.gov/d/2024-28270",
       "sourceType": "Federal rule",
       "publicationDate": "2024-12-05",
-      "accessDate": "2026-09-02",
+      "accessDate": "2026-09-03",
       "primary": true
     },
     {
       "id": "fr-2024-28267",
-      "title": "Additions and Modifications to the Entity List; Removals From the VEU Program",
+      "title": "Additions and Modifications to the Entity List; Removals From the Validated End-User (VEU) Program",
       "organization": "U.S. Bureau of Industry and Security",
       "url": "https://www.federalregister.gov/d/2024-28267",
       "sourceType": "Federal rule",
       "publicationDate": "2024-12-05",
-      "accessDate": "2026-09-02",
+      "accessDate": "2026-09-03",
       "primary": true
     },
     {
       "id": "bis-2024-12-02",
-      "title": "Commerce Strengthens Export Controls to Restrict China’s Capability to Produce Advanced Semiconductors",
+      "title": "Commerce Strengthens Export Controls to Restrict China’s Capability to Produce Advanced Semiconductors for Military Applications",
       "organization": "U.S. Bureau of Industry and Security",
       "url": "https://www.bis.gov/press-release/commerce-strengthens-export-controls-restrict-chinas-capability-produce-advanced-semiconductors-military",
       "sourceType": "Government announcement",
       "publicationDate": "2024-12-02",
-      "accessDate": "2026-09-02",
+      "accessDate": "2026-09-03",
       "primary": true
     },
     {
@@ -925,7 +928,7 @@
       "url": "https://www.federalregister.gov/d/2025-00636",
       "sourceType": "Federal rule",
       "publicationDate": "2025-01-15",
-      "accessDate": "2026-09-02",
+      "accessDate": "2026-09-03",
       "primary": true
     },
     {
@@ -935,47 +938,57 @@
       "url": "https://www.bis.gov/press-release/department-commerce-announces-rescission-biden-era-artificial-intelligence-diffusion-rule-strengthens",
       "sourceType": "Government announcement",
       "publicationDate": "2025-05-13",
-      "accessDate": "2026-09-02",
+      "accessDate": "2026-09-03",
       "primary": true
     },
     {
       "id": "gao-b-337935",
-      "title": "Artificial Intelligence Diffusion Framework: Congressional Review Act Decision",
+      "title": "U.S. Department of Commerce, Bureau of Industry and Security—Applicability of the Congressional Review Act to the Rescission of the Artificial Intelligence Diffusion Rule",
       "organization": "U.S. Government Accountability Office",
       "url": "https://www.gao.gov/products/b-337935",
       "sourceType": "Government legal decision",
-      "publicationDate": "2026-06-25",
-      "accessDate": "2026-09-02",
+      "publicationDate": "2026-05-12",
+      "accessDate": "2026-09-03",
+      "primary": true
+    },
+    {
+      "id": "bis-guidance-2026-05-31",
+      "title": "Guidance Regarding Enforcement of License Requirements for Advanced Computing Items for Entities Headquartered in Country Group D:5 and Macau",
+      "organization": "U.S. Bureau of Industry and Security",
+      "url": "https://media.bis.gov/media/documents/bis-guidance-may-31-2026.pdf",
+      "sourceType": "Government guidance",
+      "publicationDate": "2026-05-31",
+      "accessDate": "2026-09-03",
       "primary": true
     },
     {
       "id": "fr-2025-00711",
-      "title": "Additional Due Diligence Measures for Advanced Computing Integrated Circuits",
+      "title": "Implementation of Additional Due Diligence Measures for Advanced Computing Integrated Circuits; Amendments and Clarifications; and Extension of Comment Period",
       "organization": "U.S. Bureau of Industry and Security",
       "url": "https://www.federalregister.gov/d/2025-00711",
       "sourceType": "Federal rule",
       "publicationDate": "2025-01-16",
-      "accessDate": "2026-09-02",
+      "accessDate": "2026-09-03",
       "primary": true
     },
     {
       "id": "fr-2026-06851",
-      "title": "Advanced Computing Foundry Due Diligence—2026 Amendment",
+      "title": "Extension of Authorized Integrated Circuit (IC) Designer Status and Application Deadline To Become an Approved IC Designer",
       "organization": "U.S. Bureau of Industry and Security",
       "url": "https://www.federalregister.gov/d/2026-06851",
       "sourceType": "Federal rule",
-      "publicationDate": "2026-04-23",
-      "accessDate": "2026-09-02",
+      "publicationDate": "2026-04-09",
+      "accessDate": "2026-09-03",
       "primary": true
     },
     {
       "id": "fr-2025-16735",
-      "title": "Revocation of Validated End-User Authorizations in the PRC",
+      "title": "Revocation of Validated End-User Authorizations in the People’s Republic of China",
       "organization": "U.S. Bureau of Industry and Security",
       "url": "https://www.federalregister.gov/d/2025-16735",
       "sourceType": "Federal rule",
       "publicationDate": "2025-09-02",
-      "accessDate": "2026-09-02",
+      "accessDate": "2026-09-03",
       "primary": true
     },
     {
@@ -985,7 +998,7 @@
       "url": "https://www.bis.gov/press-release/department-commerce-closes-export-controls-loophole-foreign-owned-semiconductor-fabs-china",
       "sourceType": "Government announcement",
       "publicationDate": "2025-08-29",
-      "accessDate": "2026-09-02",
+      "accessDate": "2026-09-03",
       "primary": true
     },
     {
@@ -995,17 +1008,17 @@
       "url": "https://www.federalregister.gov/d/2025-19001",
       "sourceType": "Federal rule",
       "publicationDate": "2025-09-30",
-      "accessDate": "2026-09-02",
+      "accessDate": "2026-09-03",
       "primary": true
     },
     {
       "id": "fr-2025-19846",
-      "title": "One-Year Suspension of Affiliates Rule",
+      "title": "One Year Suspension of Expansion of End-User Controls for Affiliates of Certain Listed Entities",
       "organization": "U.S. Bureau of Industry and Security",
       "url": "https://www.federalregister.gov/d/2025-19846",
       "sourceType": "Federal rule",
       "publicationDate": "2025-11-12",
-      "accessDate": "2026-09-02",
+      "accessDate": "2026-09-03",
       "primary": true
     },
     {
@@ -1015,7 +1028,7 @@
       "url": "https://www.federalregister.gov/d/2026-00789",
       "sourceType": "Federal rule",
       "publicationDate": "2026-01-15",
-      "accessDate": "2026-09-02",
+      "accessDate": "2026-09-03",
       "primary": true
     },
     {
@@ -1025,7 +1038,7 @@
       "url": "https://www.bis.gov/press-release/department-commerce-revises-license-review-policy-semiconductors-exported-china",
       "sourceType": "Government announcement",
       "publicationDate": "2026-01-13",
-      "accessDate": "2026-09-02",
+      "accessDate": "2026-09-03",
       "primary": true
     },
     {
@@ -1035,17 +1048,17 @@
       "url": "https://arxiv.org/abs/2412.19437",
       "sourceType": "Technical preprint",
       "publicationDate": "2024-12-27",
-      "accessDate": "2026-09-02",
+      "accessDate": "2026-09-03",
       "primary": true
     },
     {
       "id": "metr-deepseek-v3",
-      "title": "DeepSeek-V3 Evaluation Report",
+      "title": "Details about METR’s Preliminary Evaluation of DeepSeek-V3",
       "organization": "METR",
       "url": "https://evals.alignment.org/evaluations/deepseek-v3-report/",
       "sourceType": "Independent evaluation",
       "publicationDate": "2025-02-12",
-      "accessDate": "2026-09-02",
+      "accessDate": "2026-09-03",
       "primary": false
     },
     {
@@ -1055,7 +1068,7 @@
       "url": "https://www.sec.gov/Archives/edgar/data/1045810/000104581024000029/nvda-20240128.htm",
       "sourceType": "Regulatory filing",
       "publicationDate": "2024-02-21",
-      "accessDate": "2026-09-02",
+      "accessDate": "2026-09-03",
       "primary": true
     },
     {
@@ -1065,7 +1078,7 @@
       "url": "https://github.com/deepseek-ai/DeepSeek-V3",
       "sourceType": "Company repository",
       "publicationDate": "2024-12-26",
-      "accessDate": "2026-09-02",
+      "accessDate": "2026-09-03",
       "primary": true
     },
     {
@@ -1075,7 +1088,7 @@
       "url": "https://arxiv.org/html/2505.04519",
       "sourceType": "Technical preprint",
       "publicationDate": "2025-05-07",
-      "accessDate": "2026-09-02",
+      "accessDate": "2026-09-03",
       "primary": true
     },
     {
@@ -1085,17 +1098,17 @@
       "url": "https://huggingface.co/openpangu/openPangu-Ultra-MoE-718B-model",
       "sourceType": "Company repository",
       "publicationDate": null,
-      "accessDate": "2026-09-02",
+      "accessDate": "2026-09-03",
       "primary": true
     },
     {
       "id": "bis-gp10-2025",
-      "title": "Guidance on Application of General Prohibition 10 to PRC Advanced-Computing ICs",
+      "title": "Guidance on Application of General Prohibition 10 (GP10) to People’s Republic of China (PRC) Advanced-Computing Integrated Circuits (ICs)",
       "organization": "U.S. Bureau of Industry and Security",
       "url": "https://www.bis.gov/media/documents/general-prohibition-10-guidance-may-13-2025.pdf",
       "sourceType": "Government guidance",
       "publicationDate": "2025-05-13",
-      "accessDate": "2026-09-02",
+      "accessDate": "2026-09-03",
       "primary": true
     },
     {
@@ -1105,7 +1118,7 @@
       "url": "https://arxiv.org/html/2506.12708v3",
       "sourceType": "Technical preprint",
       "publicationDate": "2025-06-19",
-      "accessDate": "2026-09-02",
+      "accessDate": "2026-09-03",
       "primary": true
     },
     {
@@ -1115,7 +1128,7 @@
       "url": "https://newsletter.semianalysis.com/p/huawei-ai-cloudmatrix-384-chinas-answer-to-nvidia-gb200-nvl72",
       "sourceType": "Specialist analysis",
       "publicationDate": "2025-04-16",
-      "accessDate": "2026-09-02",
+      "accessDate": "2026-09-03",
       "primary": false
     },
     {
@@ -1125,7 +1138,7 @@
       "url": "https://www.justice.gov/opa/pr/us-authorities-shut-down-major-china-linked-ai-tech-smuggling-network",
       "sourceType": "Government enforcement",
       "publicationDate": "2025-12-08",
-      "accessDate": "2026-09-02",
+      "accessDate": "2026-09-03",
       "primary": true
     },
     {
@@ -1135,7 +1148,7 @@
       "url": "https://media.bis.gov/media/documents/ai-counter-diversion-industry-guidance-may-13-2025.pdf",
       "sourceType": "Government guidance",
       "publicationDate": "2025-05-13",
-      "accessDate": "2026-09-02",
+      "accessDate": "2026-09-03",
       "primary": true
     },
     {
@@ -1144,18 +1157,18 @@
       "organization": "National Development and Reform Commission of China and partner ministries",
       "url": "https://www.ndrc.gov.cn/xwdt/tzgg/202403/t20240322_1365170.html",
       "sourceType": "Government policy",
-      "publicationDate": "2024-03-21",
-      "accessDate": "2026-09-02",
+      "publicationDate": "2024-03-22",
+      "accessDate": "2026-09-03",
       "primary": true
     },
     {
       "id": "hangzhou-ai-policy-2025",
-      "title": "Hangzhou Measures Supporting the Artificial-Intelligence Industry",
-      "organization": "Hangzhou municipal authorities",
-      "url": "https://z.hangzhou.com.cn/sdx/content/content_9022081.html",
+      "title": "杭州市人民政府办公厅关于促进杭州市人工智能产业高质量发展若干措施的通知 (Hangzhou measures supporting high-quality AI-industry development; translated title)",
+      "organization": "Hangzhou Municipal People’s Government",
+      "url": "https://zjjcmspublic.oss-cn-hangzhou-zwynet-d01-a.internet.cloud.zj.gov.cn/jcms_files/jcms1/web149/site/attach/0/a6c3459cc18f497c97e7e592bd9e318f.pdf",
       "sourceType": "Government policy",
-      "publicationDate": "2025-06-13",
-      "accessDate": "2026-09-02",
+      "publicationDate": "2025-06-21",
+      "accessDate": "2026-09-03",
       "primary": true
     },
     {
@@ -1165,7 +1178,7 @@
       "url": "https://www.gao.gov/products/gao-25-107386",
       "sourceType": "Government audit",
       "publicationDate": "2024-12-02",
-      "accessDate": "2026-09-02",
+      "accessDate": "2026-09-03",
       "primary": true
     }
   ]

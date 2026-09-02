@@ -49,19 +49,19 @@ Evidence is classified as genuine weakening, adaptation with a continuing cost p
 
 - Version: 0.1.0
 - Status: defensible MVP
-- Evidence reviewed through: 2 September 2026
+- Evidence reviewed through: 3 September 2026
 - Policy timeline events: 8
 - Cases: 5
 - Evidence records: 19
-- Sources: 32
-- Primary sources for the recorded proposition: 30
+- Sources: 33
+- Primary sources for the recorded proposition: 31
 - Publication status: private pending review
 
 ## Key evidence and links
 
 ### DeepSeek-V3: compute efficiency with continuing dependence
 
-DeepSeek disclosed a 671-billion-parameter mixture-of-experts model trained on 14.8 trillion tokens using 2.788 million Nvidia H800 GPU-hours. Its widely repeated $5.576 million figure is a rental-equivalent estimate for the disclosed final training run, not a complete program cost. METR found performance broadly comparable to leading models released roughly six months earlier.
+DeepSeek disclosed a 671-billion-parameter mixture-of-experts model trained on 14.8 trillion tokens using 2.788 million Nvidia H800 GPU-hours. Its widely repeated $5.576 million figure is a rental-equivalent estimate for the disclosed final training run, not a complete program cost. On METR’s autonomy suite, DeepSeek-V3 was comparable to Claude 3.5 Sonnet (Old) while trailing newer frontier models.
 
 - [DeepSeek-V3 Technical Report](https://arxiv.org/abs/2412.19437)
 - [METR DeepSeek-V3 Evaluation Report](https://evals.alignment.org/evaluations/deepseek-v3-report/)
@@ -69,7 +69,7 @@ DeepSeek disclosed a 671-billion-parameter mixture-of-experts model trained on 1
 
 ### Pangu Ultra: narrow domestic substitution
 
-Huawei reported completing all training stages for a 718-billion-parameter model on 6,000 Ascend 910B NPUs. That weakens the direct claim that controlled U.S. accelerators are indispensable for a large run. It does not resolve fleet availability, energy, capital cost, HBM, fabrication, packaging, or upstream dependence.
+Huawei reports training a 718-billion-parameter model from scratch on Ascend and says its system supports all training stages. That weakens the direct claim that controlled U.S. accelerators are indispensable for a large run. The disclosed software stack also uses PyTorch, Transformers, and NVIDIA-origin Megatron-LM, and the evidence does not resolve fleet availability, energy, capital cost, HBM, fabrication, packaging, or other upstream dependence.
 
 - [Pangu Ultra MoE technical preprint](https://arxiv.org/html/2505.04519)
 - [openPangu Ultra MoE model repository](https://huggingface.co/openpangu/openPangu-Ultra-MoE-718B-model)
@@ -77,7 +77,7 @@ Huawei reported completing all training stages for a 718-billion-parameter model
 
 ### CloudMatrix384: systems engineering shifts the constraint
 
-Huawei and SiliconFlow described a system connecting 384 Ascend NPUs and 192 Kunpeng CPUs. Their DeepSeek-R1 test reported useful inference throughput, but comparisons vary with latency target, batch size, and implementation. Independent, metered cost, power, reliability, and full supply-chain provenance remain unavailable.
+Huawei and SiliconFlow described a system connecting 384 Ascend NPUs and 192 Kunpeng CPUs. Their fixed-configuration DeepSeek-R1 tests used 256 NPUs and reported useful inference throughput, but comparisons vary with latency target, MTP assumptions, batch size, and implementation. Independent evidence of production service, metered cost, power, reliability, and full supply-chain provenance remains unavailable.
 
 - [Serving Large Language Models on Huawei CloudMatrix384](https://arxiv.org/html/2506.12708v3)
 - [SemiAnalysis CloudMatrix384 assessment](https://newsletter.semianalysis.com/p/huawei-ai-cloudmatrix-384-chinas-answer-to-nvidia-gb200-nvl72)
@@ -94,7 +94,7 @@ A company and its owner pleaded guilty in a scheme involving at least $160 milli
 National tax preferences and a Hangzhou compute-support policy show that public support mechanisms exist. The reviewed evidence does not identify relevant recipients, actual disbursements, hardware origin, or capability produced per yuan. A GAO report records stockpiling as a regulatory concern, not proof of a particular Chinese inventory.
 
 - [2024 integrated-circuit and software tax-preference notice](https://www.ndrc.gov.cn/xwdt/tzgg/202403/t20240322_1365170.html)
-- [Hangzhou artificial-intelligence support measures](https://z.hangzhou.com.cn/sdx/content/content_9022081.html)
+- [Hangzhou artificial-intelligence support measures (official PDF)](https://zjjcmspublic.oss-cn-hangzhou-zwynet-d01-a.internet.cloud.zj.gov.cn/jcms_files/jcms1/web149/site/attach/0/a6c3459cc18f497c97e7e592bd9e318f.pdf)
 - [GAO-25-107386](https://www.gao.gov/products/gao-25-107386)
 
 ## What would change the finding
