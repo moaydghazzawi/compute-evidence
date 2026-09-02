@@ -3,7 +3,7 @@
 **China’s Responses to U.S. Advanced-Compute Restrictions**
 
 > Status: defensible MVP · version 0.1.0<br>
-> Evidence reviewed through: 2 September 2026<br>
+> Evidence reviewed through: 3 September 2026<br>
 > Repository status: private pending publication review
 
 This project asks:
@@ -32,7 +32,7 @@ The evidence is more consistent with controls imposing friction and shifting cos
 - Five structured response cases
 - The same six-question test applied to every case
 - Nineteen evidence records with claims, locations, counterevidence, confidence, and uncertainty
-- Thirty-two sources; thirty are primary for the narrow claim recorded
+- Thirty-three sources; thirty-one are primary for the narrow claim recorded
 - Four explicit judgment classes
 - Filters for response type, date, source type, confidence, and dependency
 - Downloadable JSON and CSV
@@ -43,7 +43,7 @@ The evidence is more consistent with controls imposing friction and shifting cos
 
 | Response | Case | Judgment | Confidence | Dependency finding |
 |---|---|---|---|---|
-| Compute efficiency | DeepSeek-V3 on Nvidia H800 | Adaptation + cost penalty | High | Foreign-controlled hardware |
+| Compute efficiency | DeepSeek-V3 on Nvidia H800 | Adaptation + cost penalty | Moderate | Foreign-controlled hardware |
 | Domestic substitutes | Pangu Ultra MoE on 6,000 Ascend NPUs | Genuine weakening | Moderate | Reduced; upstream unresolved |
 | Systems engineering | CloudMatrix384 serving DeepSeek-R1 | Adaptation + cost penalty | Moderate | Reduced; upstream unresolved |
 | Rerouted access | Operation Gatekeeper GPU diversion network | Circumvention, not independence | Moderate | Foreign access route |
@@ -139,7 +139,15 @@ pnpm exec playwright install chromium
 pnpm test:browser
 ```
 
-The browser suite starts an isolated local server and checks both 1440×900 and 390×844 viewports. It covers serious/critical accessibility violations, page overflow, all five filter dimensions, search and reset behavior, keyboard order, JSON/CSV integrity, download links, and screenshots.
+The browser suite starts an isolated local server and checks both 1440×900 and 390×844 viewports. It covers serious/critical accessibility violations, console errors, page overflow, mobile navigation, public metadata, all five filter dimensions, filtered evidence URLs, search and reset behavior, keyboard order, JSON/CSV integrity, and download links.
+
+Refresh the signed-off repository screenshots explicitly:
+
+```bash
+pnpm test:screenshots
+```
+
+The normal browser suite does not rewrite tracked screenshots.
 
 Against an already running local preview on port 3001 with system Chrome:
 
@@ -159,7 +167,7 @@ pnpm lint
 pnpm build
 ```
 
-All 32 public source URLs returned HTTP 200 during the 2 September 2026 live check. `check:links` is intentionally not part of CI because third-party availability and bot policies can make network checks nondeterministic.
+All 33 public source URLs returned HTTP 200 during the 3 September 2026 review. `check:links` is intentionally not part of CI because third-party availability and bot policies can make network checks nondeterministic.
 
 ## Data
 

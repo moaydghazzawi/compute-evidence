@@ -48,7 +48,7 @@ jobs:
       - name: Install browser
         run: pnpm exec playwright install --with-deps chromium
 
-      - name: Check accessibility, responsive layout, interactions, and downloads
+      - name: Check accessibility, responsive layout, navigation, metadata, interactions, and downloads
         run: pnpm test:browser
 
       - name: Preserve browser report and screenshots

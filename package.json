@@ -15,14 +15,15 @@
     "check:citations": "node scripts/validate-data.mjs --citations",
     "check:links": "node scripts/check-links.mjs",
     "test": "node --test",
-    "test:browser": "playwright test",
-    "test:browser:local": "PLAYWRIGHT_BASE_URL=http://localhost:3001 PLAYWRIGHT_USE_SYSTEM_CHROME=1 playwright test",
+    "test:browser": "playwright test --grep-invert @screenshot",
+    "test:browser:local": "PLAYWRIGHT_BASE_URL=http://localhost:3001 PLAYWRIGHT_USE_SYSTEM_CHROME=1 playwright test --grep-invert @screenshot",
     "test:screenshots": "playwright test --grep @screenshot",
     "test:screenshots:local": "PLAYWRIGHT_BASE_URL=http://localhost:3001 PLAYWRIGHT_USE_SYSTEM_CHROME=1 playwright test --grep @screenshot",
     "start": "wrangler dev --config dist/server/wrangler.json",
     "lint": "oxlint",
+    "typecheck": "tsc --noEmit",
     "format": "oxfmt",
-    "verify": "pnpm check:schema && pnpm check:citations && pnpm test && pnpm lint && pnpm build"
+    "verify": "pnpm check:schema && pnpm check:citations && pnpm test && pnpm lint && pnpm typecheck && pnpm build"
   },
   "dependencies": {
     "@base-ui/react": "1.7.0",

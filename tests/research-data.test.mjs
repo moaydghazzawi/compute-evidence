@@ -18,6 +18,16 @@ test('every citation resolves in both directions', async () => {
   assert.deepEqual(validateCitations(data), []);
 });
 
+test('citation validation catches a missing evidence-to-case backlink', async () => {
+  const data = structuredClone(await loadResearchData());
+  const cloudMatrix = data.cases.find((item) => item.id === 'case-cloudmatrix');
+  cloudMatrix.evidenceIds = cloudMatrix.evidenceIds.filter((id) => id !== 'ev-pangu-upstream');
+  assert.match(
+    validateCitations(data).join('\n'),
+    /ev-pangu-upstream \/ case-cloudmatrix citation is not reciprocal/,
+  );
+});
+
 test('CSV transformation preserves one row per evidence card', async () => {
   const data = await loadResearchData();
   const csv = evidenceToCsv(data);

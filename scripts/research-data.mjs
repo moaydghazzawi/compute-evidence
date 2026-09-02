@@ -134,6 +134,7 @@ export function validateCitations(data) {
   const sourceIds = new Set(data.sources.map((source) => source.id));
   const evidenceIds = new Set(data.evidence.map((item) => item.id));
   const caseIds = new Set(data.cases.map((item) => item.id));
+  const casesById = new Map(data.cases.map((item) => [item.id, item]));
   const citedSources = new Set();
 
   for (const item of data.evidence) {
@@ -141,6 +142,9 @@ export function validateCitations(data) {
     else citedSources.add(item.sourceId);
     for (const caseId of item.caseIds) {
       if (!caseIds.has(caseId)) errors.push(`${item.id} refers to missing case ${caseId}`);
+      else if (!casesById.get(caseId).evidenceIds.includes(item.id)) {
+        errors.push(`${item.id} / ${caseId} citation is not reciprocal`);
+      }
     }
   }
 

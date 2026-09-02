@@ -5,6 +5,7 @@ export function SiteFooter() {
         <div>
           <p className="font-heading text-xl">When Controls Raise the Cost</p>
           <p className="mt-2 max-w-2xl leading-relaxed text-paper/60">A living research product. Judgments describe the reviewed public record, not classified facts, legal advice, or a final estimate of policy impact.</p>
+          <p className="mt-2 text-[10px] uppercase tracking-[0.12em] text-paper/60">Research and analysis by Moayd Ghazzawi</p>
         </div>
         <div className="flex flex-wrap items-end gap-5 font-semibold text-paper/70">
           <a className="hover:text-paper" href="/methodology">Methodology</a>

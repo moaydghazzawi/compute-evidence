@@ -1,7 +1,9 @@
 import { defineConfig, devices } from '@playwright/test';
 
 const againstExistingServer = Boolean(process.env.PLAYWRIGHT_BASE_URL);
-const baseURL = process.env.PLAYWRIGHT_BASE_URL ?? 'http://127.0.0.1:4173';
+// The Cloudflare-backed Vinext server binds to `localhost`; keep Playwright's
+// readiness probe on the same hostname.
+const baseURL = process.env.PLAYWRIGHT_BASE_URL ?? 'http://localhost:4173';
 const channel = process.env.PLAYWRIGHT_USE_SYSTEM_CHROME === '1' ? 'chrome' : undefined;
 
 export default defineConfig({
@@ -46,8 +48,8 @@ export default defineConfig({
   webServer: againstExistingServer
     ? undefined
     : {
-        command: './node_modules/.bin/vinext dev --host 127.0.0.1 --port 4173',
-        url: 'http://127.0.0.1:4173',
+        command: './node_modules/.bin/vinext dev --host localhost --port 4173',
+        url: 'http://localhost:4173',
         reuseExistingServer: !process.env.CI,
         timeout: 120_000,
         stdout: 'ignore',

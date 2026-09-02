@@ -34,6 +34,11 @@ async function expectNoPageOverflow(page: Page) {
 test.describe('route quality gates', () => {
   for (const route of routes) {
     test(`${route.label} has no serious accessibility violations or page overflow`, async ({ page }) => {
+      const runtimeErrors: string[] = [];
+      page.on('console', (message) => {
+        if (message.type() === 'error') runtimeErrors.push(message.text());
+      });
+      page.on('pageerror', (error) => runtimeErrors.push(error.message));
       await openSettled(page, route.path);
       await expectNoPageOverflow(page);
       const audit = await new AxeBuilder({ page }).analyze();
@@ -45,6 +50,7 @@ test.describe('route quality gates', () => {
         targets: violation.nodes.flatMap((node) => node.target.map(String)),
       }));
       expect(blocking, JSON.stringify(summary, null, 2)).toEqual([]);
+      expect(runtimeErrors, `Runtime errors on ${route.path}`).toEqual([]);
     });
   }
 });
@@ -107,6 +113,44 @@ test('JSON and CSV datasets are linked, downloadable, and populated', async ({ p
     const [download] = await Promise.all([page.waitForEvent('download'), link.click()]);
     expect(download.suggestedFilename()).toBe(item.filename);
   }
+});
+
+test('metadata avoids local share URLs and uses the SVG favicon', async ({ page }) => {
+  await openSettled(page, '/');
+  const metadata = await page.evaluate(() => ({
+    canonical: document.querySelector<HTMLLinkElement>('link[rel="canonical"]')?.href,
+    icon: document.querySelector<HTMLLinkElement>('link[rel="icon"]')?.href,
+    ogImage: document.querySelector<HTMLMetaElement>('meta[property="og:image"]')?.content,
+    twitterImage: document.querySelector<HTMLMetaElement>('meta[name="twitter:image"]')?.content,
+  }));
+
+  expect(metadata.icon).toMatch(/\/favicon\.svg$/);
+  for (const value of [metadata.canonical, metadata.ogImage, metadata.twitterImage].filter(Boolean)) {
+    expect(value).toMatch(/^https:\/\//);
+    expect(value).not.toContain('localhost');
+  }
+  expect(metadata.twitterImage).toBe(metadata.ogImage);
+});
+
+test('mobile navigation exposes every primary destination', async ({ page }, testInfo) => {
+  test.skip(!testInfo.project.name.startsWith('mobile'), 'Mobile-navigation check');
+  await openSettled(page, '/evidence');
+  await page.locator('summary[aria-label="Open navigation menu"]').click();
+
+  const mobileNav = page.getByRole('navigation', { name: 'Mobile primary' });
+  for (const label of ['Cases', 'Matrix', 'Timeline', 'Evidence', 'Method']) {
+    await expect(mobileNav.getByRole('link', { name: label, exact: true })).toBeVisible();
+  }
+
+  await mobileNav.getByRole('link', { name: 'Method', exact: true }).click();
+  await expect(page).toHaveURL(/\/methodology$/);
+  await expect(page.getByRole('heading', { name: 'Separate progress from proof of policy failure.' })).toBeVisible();
+});
+
+test('filtered evidence URLs expose the expected reciprocal record set', async ({ page }) => {
+  await openSettled(page, '/evidence?case=case-cloudmatrix');
+  await expect(page.getByText('EVIDENCE LEDGER / 5 RECORDS')).toBeVisible();
+  await expect(page.getByRole('heading', { name: /Ascend 910-series chips likely involved/ })).toBeVisible();
 });
 
 test('captures the signed-off responsive overview @screenshot', async ({ page }, testInfo) => {

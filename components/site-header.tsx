@@ -33,7 +33,24 @@ export function SiteHeader() {
           <a aria-label="Download JSON research dataset" className="inline-flex min-h-8 items-center gap-2 bg-primary px-3 text-xs font-bold text-primary-foreground transition-opacity hover:opacity-85" href="/data/research-dataset.json" download>
             <Database className="size-3.5" /> <span className="hidden sm:inline">Dataset</span>
           </a>
-          <a className="grid size-8 place-items-center border border-border lg:hidden" href="/#cases" aria-label="Jump to case explorer"><Menu className="size-4" /></a>
+          <details className="group relative lg:hidden">
+            <summary
+              aria-label="Open navigation menu"
+              className="grid size-8 cursor-pointer list-none place-items-center border border-border bg-card transition-colors hover:bg-muted [&::-webkit-details-marker]:hidden"
+            >
+              <Menu aria-hidden="true" className="size-4" />
+            </summary>
+            <nav
+              aria-label="Mobile primary"
+              className="absolute right-0 top-[calc(100%+0.5rem)] z-50 grid min-w-52 border border-border bg-card p-2 shadow-xl"
+            >
+              {nav.map((item) => (
+                <a className="px-3 py-2.5 text-xs font-semibold text-foreground hover:bg-muted" href={item.href} key={item.href}>
+                  {item.label}
+                </a>
+              ))}
+            </nav>
+          </details>
         </div>
       </div>
     </header>
