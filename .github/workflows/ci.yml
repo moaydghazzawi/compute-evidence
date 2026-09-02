@@ -1,0 +1,62 @@
+name: CI
+
+on:
+  push:
+    branches:
+      - main
+  pull_request:
+  workflow_dispatch:
+
+permissions:
+  contents: read
+
+concurrency:
+  group: ci-${{ github.workflow }}-${{ github.ref }}
+  cancel-in-progress: true
+
+jobs:
+  validate-test-build:
+    name: Validate, test, build, and audit UI
+    runs-on: ubuntu-latest
+    timeout-minutes: 20
+
+    steps:
+      - name: Check out repository
+        uses: actions/checkout@v4
+
+      - name: Install pnpm
+        uses: pnpm/action-setup@v4
+        with:
+          version: 11.19.0
+          run_install: false
+
+      - name: Install Node.js
+        uses: actions/setup-node@v4
+        with:
+          node-version: 22.13.0
+          cache: pnpm
+
+      - name: Install dependencies
+        run: pnpm install --frozen-lockfile
+
+      - name: Confirm generated datasets are current
+        run: pnpm check:data
+
+      - name: Validate, unit test, lint, and build
+        run: pnpm verify
+
+      - name: Install browser
+        run: pnpm exec playwright install --with-deps chromium
+
+      - name: Check accessibility, responsive layout, interactions, and downloads
+        run: pnpm test:browser
+
+      - name: Preserve browser report and screenshots
+        if: always()
+        uses: actions/upload-artifact@v4
+        with:
+          name: browser-quality-report
+          path: |
+            playwright-report/
+            test-results/
+            docs/screenshots/
