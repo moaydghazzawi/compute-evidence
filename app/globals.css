@@ -1,0 +1,236 @@
+@import 'tailwindcss';
+@import 'tw-animate-css';
+
+@custom-variant dark (&:is(.dark *));
+
+@theme inline {
+  --color-background: var(--background);
+  --color-foreground: var(--foreground);
+  --color-card: var(--card);
+  --color-card-foreground: var(--card-foreground);
+  --color-popover: var(--popover);
+  --color-popover-foreground: var(--popover-foreground);
+  --color-primary: var(--primary);
+  --color-primary-foreground: var(--primary-foreground);
+  --color-secondary: var(--secondary);
+  --color-secondary-foreground: var(--secondary-foreground);
+  --color-muted: var(--muted);
+  --color-muted-foreground: var(--muted-foreground);
+  --color-accent: var(--accent);
+  --color-accent-foreground: var(--accent-foreground);
+  --color-destructive: var(--destructive);
+  --color-border: var(--border);
+  --color-input: var(--input);
+  --color-ring: var(--ring);
+  --color-ink: var(--ink);
+  --color-paper: var(--paper);
+  --color-signal: var(--signal);
+  --color-cobalt: var(--cobalt);
+  --color-teal: var(--teal);
+  --color-amber: var(--amber);
+  --color-rust: var(--rust);
+  --font-sans: var(--font-interface);
+  --font-heading: var(--font-editorial);
+  --font-mono: var(--font-data);
+  --radius-sm: 2px;
+  --radius-md: 3px;
+  --radius-lg: 4px;
+  --radius-xl: 5px;
+}
+
+:root {
+  --font-interface: Inter, ui-sans-serif, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
+  --font-editorial: Iowan Old Style, Baskerville, "Times New Roman", serif;
+  --font-data: "SFMono-Regular", Consolas, "Liberation Mono", monospace;
+  --background: #f3f0e9;
+  --foreground: #172128;
+  --card: #fffdf8;
+  --card-foreground: #172128;
+  --popover: #fffdf8;
+  --popover-foreground: #172128;
+  --primary: #192631;
+  --primary-foreground: #fffdf8;
+  --secondary: #e6e0d6;
+  --secondary-foreground: #172128;
+  --muted: #ebe6dc;
+  --muted-foreground: #566167;
+  --accent: #dce6ed;
+  --accent-foreground: #173f5b;
+  --destructive: #9d3c26;
+  --border: #d2cbc0;
+  --input: #c7beb2;
+  --ring: #2e6689;
+  --ink: #172128;
+  --paper: #f8f4eb;
+  --signal: #f2b84b;
+  --cobalt: #2d668b;
+  --teal: #14746f;
+  --amber: #7b5200;
+  --rust: #a14832;
+  --radius: 3px;
+}
+
+.dark {
+  --background: #11191f;
+  --foreground: #f5f1e8;
+  --card: #18232b;
+  --card-foreground: #f5f1e8;
+  --popover: #18232b;
+  --popover-foreground: #f5f1e8;
+  --primary: #f5f1e8;
+  --primary-foreground: #11191f;
+  --secondary: #24323b;
+  --secondary-foreground: #f5f1e8;
+  --muted: #24323b;
+  --muted-foreground: #adb7bc;
+  --accent: #263d4b;
+  --accent-foreground: #e1eef5;
+  --destructive: #ef8a70;
+  --border: #33434c;
+  --input: #40515b;
+  --ring: #82b1cf;
+  --ink: #0d151a;
+  --paper: #f8f4eb;
+  --signal: #f2b84b;
+  --cobalt: #84b4d0;
+  --teal: #63c7be;
+  --amber: #e7b54a;
+  --rust: #f08a6f;
+}
+
+@layer base {
+  * { @apply border-border outline-ring/50; }
+  html { @apply scroll-smooth font-sans; }
+  body { @apply min-w-0 bg-background text-foreground antialiased; }
+  a, button { @apply focus-visible:outline-2 focus-visible:outline-offset-2; }
+  button { cursor: pointer; }
+  ::selection { background: var(--signal); color: var(--ink); }
+}
+
+body {
+  background-image:
+    linear-gradient(to right, color-mix(in srgb, var(--border) 38%, transparent) 1px, transparent 1px),
+    linear-gradient(to bottom, color-mix(in srgb, var(--border) 28%, transparent) 1px, transparent 1px);
+  background-size: 32px 32px;
+}
+
+.eyebrow {
+  margin-bottom: 0.45rem;
+  font-size: 0.625rem;
+  font-weight: 800;
+  letter-spacing: 0.17em;
+  text-transform: uppercase;
+  color: var(--muted-foreground);
+}
+
+.skip-link {
+  position: fixed;
+  top: 0.75rem;
+  left: 0.75rem;
+  z-index: 100;
+  transform: translateY(-180%);
+  background: var(--signal);
+  padding: 0.65rem 0.85rem;
+  color: var(--ink);
+  font-size: 0.75rem;
+  font-weight: 800;
+}
+
+.skip-link:focus { transform: translateY(0); }
+
+.filter-chip {
+  display: inline-flex;
+  min-height: 2rem;
+  align-items: center;
+  gap: 0.75rem;
+  border: 1px solid var(--border);
+  background: var(--card);
+  padding: 0.35rem 0.65rem;
+  color: var(--foreground);
+  font-size: 0.72rem;
+  font-weight: 650;
+}
+
+.filter-chip:hover { background: var(--muted); }
+
+.verdict {
+  display: inline-flex;
+  align-items: center;
+  border-left: 3px solid currentColor;
+  padding: 0.25rem 0.45rem;
+  font-size: 0.68rem;
+  font-weight: 800;
+  line-height: 1.2;
+}
+
+.verdict-amber { color: var(--amber); background: color-mix(in srgb, var(--amber) 10%, transparent); }
+.verdict-red { color: var(--rust); background: color-mix(in srgb, var(--rust) 10%, transparent); }
+.verdict-teal { color: var(--teal); background: color-mix(in srgb, var(--teal) 10%, transparent); }
+.verdict-slate { color: var(--muted-foreground); background: var(--muted); }
+.verdict-compact { font-size: 0.6rem; }
+
+.status-tag,
+.confidence,
+.relationship {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.25rem;
+  border: 1px solid var(--border);
+  background: var(--background);
+  padding: 0.2rem 0.4rem;
+  font-size: 0.58rem;
+  font-weight: 800;
+  line-height: 1.2;
+  letter-spacing: 0.04em;
+  text-transform: uppercase;
+  white-space: nowrap;
+}
+
+.case-selector {
+  min-height: 10.5rem;
+  transition: background-color 160ms ease, box-shadow 160ms ease;
+}
+
+.case-selector:hover { background: var(--muted); }
+.case-selector[aria-pressed="true"] {
+  background: color-mix(in srgb, var(--accent) 72%, var(--card));
+  box-shadow: inset 4px 0 0 var(--cobalt);
+}
+
+.confidence-high { color: var(--teal); border-color: color-mix(in srgb, var(--teal) 45%, var(--border)); }
+.confidence-moderate { color: var(--amber); border-color: color-mix(in srgb, var(--amber) 45%, var(--border)); }
+.confidence-low { color: var(--rust); border-color: color-mix(in srgb, var(--rust) 45%, var(--border)); }
+.relationship-supports { color: var(--teal); }
+.relationship-qualifies { color: var(--amber); }
+.relationship-counters { color: var(--rust); }
+
+.evidence-card { overflow-wrap: anywhere; }
+
+.prose-research p {
+  max-width: 52rem;
+  font-size: 1rem;
+  line-height: 1.8;
+  color: var(--muted-foreground);
+}
+
+.prose-research > p + p { margin-top: 1rem; }
+
+@media (prefers-reduced-motion: reduce) {
+  *, *::before, *::after {
+    scroll-behavior: auto !important;
+    transition-duration: 0.01ms !important;
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+  }
+}
+
+@media (max-width: 640px) {
+  body { background-size: 24px 24px; }
+  .case-selector { min-height: 0; }
+}
+
+@media print {
+  header, footer, button, .skip-link { display: none !important; }
+  body { background: white; }
+  .evidence-card { break-inside: avoid; }
+}
