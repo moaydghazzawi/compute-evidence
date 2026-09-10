@@ -1,5 +1,5 @@
 'use client';
-import { useEffect, useState } from 'react';
+import { useState } from 'react';
 import { Check, Link2 } from 'lucide-react';
 import { Button } from '@/components/ui/button';
 
@@ -10,23 +10,22 @@ export function CopyLink({
   path?: string;
   label?: string;
 }) {
-  const [copied, setCopied] = useState(false);
-  const [fallback, setFallback] = useState('');
-  useEffect(() => {
-    setCopied(false);
-    setFallback('');
-  }, [path]);
+  const [result, setResult] = useState<{
+    path?: string;
+    copied: boolean;
+    fallback: string;
+  }>({ copied: false, fallback: '' });
+  const copied = result.path === path && result.copied;
+  const fallback = result.path === path ? result.fallback : '';
   async function copy() {
     const url = path
       ? new URL(path, window.location.origin).href
       : window.location.href;
     try {
       await navigator.clipboard.writeText(url);
-      setCopied(true);
-      setFallback('');
+      setResult({ path, copied: true, fallback: '' });
     } catch {
-      setCopied(false);
-      setFallback(url);
+      setResult({ path, copied: false, fallback: url });
     }
   }
   return (
@@ -35,13 +34,13 @@ export function CopyLink({
         {copied ? <Check aria-hidden="true" /> : <Link2 aria-hidden="true" />}
         {copied ? 'Copied' : label}
       </Button>
-      <span className="sr-only" role="status">
+      <output className="sr-only">
         {copied
           ? 'Link copied'
           : fallback
             ? 'Copying was unavailable. Select and copy the link below.'
             : ''}
-      </span>
+      </output>
       {fallback ? (
         <label className="copy-fallback">
           Select and copy this link

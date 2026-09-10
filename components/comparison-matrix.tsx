@@ -16,9 +16,8 @@ export function ComparisonMatrix({
   const label = dimensions.find((test) => test.id === dimension)?.label;
   return (
     <div className="comparison-workspace">
-      <div
+      <fieldset
         className="dimension-controls"
-        role="group"
         aria-label="Comparison dimension"
       >
         {dimensions.map((test, index) => (
@@ -32,7 +31,7 @@ export function ComparisonMatrix({
             {test.label}
           </button>
         ))}
-      </div>
+      </fieldset>
       <div className="comparison-table-wrap">
         <table className="comparison-table">
           <caption className="sr-only">

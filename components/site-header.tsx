@@ -1,5 +1,5 @@
 'use client';
-import { useRef } from 'react';
+import { useEffect, useRef } from 'react';
 import { ArrowDownToLine, Menu, ArrowUpRight } from 'lucide-react';
 const nav = [
   { href: '/#cases', label: 'Cases' },
@@ -14,6 +14,16 @@ export function SiteHeader({
   current?: 'overview' | 'evidence' | 'methodology';
 }) {
   const menuRef = useRef<HTMLDetailsElement>(null);
+  useEffect(() => {
+    const close = (event: KeyboardEvent) => {
+      if (event.key === 'Escape' && menuRef.current?.open) {
+        menuRef.current.open = false;
+        menuRef.current.querySelector('summary')?.focus();
+      }
+    };
+    document.addEventListener('keydown', close);
+    return () => document.removeEventListener('keydown', close);
+  }, []);
   return (
     <header className="site-header">
       <div className="page-width header-inner">
@@ -61,16 +71,7 @@ export function SiteHeader({
             GitHub
             <ArrowUpRight size={14} aria-hidden="true" />
           </a>
-          <details
-            className="mobile-menu"
-            ref={menuRef}
-            onKeyDown={(event) => {
-              if (event.key === 'Escape' && menuRef.current) {
-                menuRef.current.open = false;
-                menuRef.current.querySelector('summary')?.focus();
-              }
-            }}
-          >
+          <details className="mobile-menu" ref={menuRef}>
             <summary aria-label="Open navigation menu">
               <Menu size={21} aria-hidden="true" />
             </summary>
