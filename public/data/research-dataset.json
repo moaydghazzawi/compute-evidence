@@ -3,13 +3,14 @@
     "title": "When Controls Raise the Cost",
     "subtitle": "China’s Responses to U.S. Advanced-Compute Restrictions",
     "question": "Since October 2022, which Chinese responses have actually weakened U.S. controls on advanced AI chips, and which have only made Chinese AI development more expensive, slower, or more dependent on outside technology?",
-    "version": "0.1.0",
-    "status": "Defensible MVP",
+    "version": "0.2.0",
+    "status": "Research edition",
     "evidenceThrough": "2026-09-03",
     "accessed": "2026-09-03",
-    "currentFinding": "One response weakens a narrow control point; none proves system-wide independence.",
-    "summary": "The public record shows meaningful adaptation, one narrow case of functional substitution, and real enforcement leakage. It does not show that Chinese developers have escaped the cost, scale, or supply-chain consequences of U.S. controls.",
-    "conversationSummary": "Chinese AI progress is real, but progress and control failure are not synonyms. DeepSeek-V3 shows that efficient model and systems design can stretch a restricted Nvidia H800 fleet. Huawei’s Pangu Ultra shows that thousands of domestic Ascend accelerators can complete a very-large-model training run, weakening the narrow claim that access to top U.S. accelerators is indispensable. CloudMatrix384 shows that system design can recover useful inference performance by pooling many weaker devices. A U.S. prosecution shows that restricted H100 and H200 chips also moved through a diversion network. Each result carries a different implication. The Huawei cases still leave fabrication, high-bandwidth memory, power, networking, and economics unresolved. DeepSeek remained dependent on controlled foreign hardware. Smuggling is an enforcement failure, not technological independence. The strongest current reading is that the controls impose friction and shift costs rather than create an absolute barrier—and that only repeated, independently verified scale can show whether that friction is durable."
+    "currentFinding": "One vendor-reported case weakens direct accelerator denial. None establishes broad supply-chain independence.",
+    "summary": "The public record shows useful adaptation, a narrow case of functional substitution, and enforcement leakage. It does not establish broad supply-chain independence or measure how much extra cost the controls caused.",
+    "conversationSummary": "Chinese AI progress is real, but progress and control failure are not synonyms. DeepSeek-V3 shows that efficient model and systems design can stretch a restricted Nvidia H800 fleet. Huawei’s Pangu Ultra shows that thousands of domestic Ascend accelerators can complete a very-large-model training run, weakening the narrow claim that access to top U.S. accelerators is indispensable. CloudMatrix384 shows that system design can recover useful inference performance by pooling many weaker devices. A U.S. prosecution shows that restricted H100 and H200 chips also moved through a diversion network. Each result carries a different implication. The Huawei cases still leave fabrication, high-bandwidth memory, power, networking, and economics unresolved. DeepSeek remained dependent on controlled foreign hardware. Smuggling is an enforcement failure, not technological independence. The strongest current reading is that the controls impose friction and shift costs rather than create an absolute barrier—and that only repeated, independently verified scale can show whether that friction is durable.",
+    "reviewedOn": "2026-09-11"
   },
   "responseTypes": [
     {
@@ -41,13 +42,13 @@
   "classifications": [
     {
       "id": "genuine-weakening",
-      "label": "Genuine weakening",
-      "definition": "The relevant capability is restored at useful scale while dependence falls at the targeted control point."
+      "label": "Narrow control-point weakening",
+      "definition": "Useful capability is restored with reduced dependence at one targeted control point. This is not a finding of broad independence; vendor reports and repeatability limits still matter."
     },
     {
       "id": "adaptation-cost",
       "label": "Adaptation + cost penalty",
-      "definition": "The capability is real, but added hardware, energy, time, engineering, or outside dependence remains."
+      "definition": "Useful capability coexists with substantial resource demands or controlled foreign-hardware dependence. The label is a qualitative judgment, not a measured causal cost premium from export controls."
     },
     {
       "id": "circumvention",
@@ -82,7 +83,7 @@
       "Benchmark gains mix the effects of algorithms, data, hardware, and implementation; they do not isolate the causal effect of export controls.",
       "Enforcement cases reveal detected schemes, not the prevalence of undetected diversion or the capability ultimately produced.",
       "Rules changed repeatedly. Each response must be matched to the rule and license policy in force at that time.",
-      "This MVP is selective, not exhaustive. It favors cases with inspectable public evidence and labels gaps instead of estimating hidden quantities."
+      "This study is selective, not exhaustive. It favors cases with inspectable public evidence and labels gaps instead of estimating hidden quantities."
     ],
     "whatWouldChangeMind": [
       "Repeated, independently audited frontier-scale training on domestically fabricated accelerators with disclosed HBM, yield, power, cost, and volume would move the domestic-substitute finding toward broad control failure.",
@@ -232,13 +233,13 @@
           "id": "penalty",
           "label": "Extra resources",
           "status": "Material",
-          "answer": "The disclosed 2.788 million GPU-hours exclude prior research, ablations, data, staff, acquisition, energy, and failed work. Extensive low-level co-design was required."
+          "answer": "The disclosed 2.788 million GPU-hours exclude prior research, ablations, data, staff, acquisition, energy, and failed work. Low-level co-design was substantial; neither this total nor the engineering effort isolates the extra cost caused by controls."
         },
         {
           "id": "dependency",
           "label": "Outside dependency",
           "status": "High",
-          "answer": "Training used Nvidia H800 accelerators and a software/networking stack centered on controlled U.S. technology."
+          "answer": "Training relied on Nvidia H800 accelerators. Hardware replenishment is the relevant foreign-controlled dependency; using foreign-origin open-source software alone does not establish an enforceable chokepoint."
         },
         {
           "id": "enforcement",
@@ -250,7 +251,7 @@
           "id": "future",
           "label": "Next generation",
           "status": "Unclear",
-          "answer": "The run proves useful 2024-era capability. Later DeepSeek releases do not publicly disclose enough hardware detail to show that the same mechanism scales forward."
+          "answer": "This run establishes useful 2024-era capability. It does not by itself demonstrate independent, repeatable access to the hardware needed for later generations."
         }
       ],
       "evidenceIds": [
@@ -280,7 +281,7 @@
       "classification": "genuine-weakening",
       "confidence": "Moderate",
       "dependencyStatus": "Reduced; upstream unresolved",
-      "finding": "A full large-model training run on Ascend weakens direct accelerator denial, but not upstream controls or the cost-of-scale argument.",
+      "finding": "Huawei reports a full large-model training run on Ascend. This weakens direct accelerator denial at a narrow control point, but does not establish upstream independence or cost parity.",
       "tests": [
         {
           "id": "capability",
@@ -298,13 +299,13 @@
           "id": "penalty",
           "label": "Extra resources",
           "status": "High",
-          "answer": "The run used 6,000 accelerators, about 19 trillion tokens, 30 percent model FLOP utilization, and extensive recomputation, swapping, topology, operator, and simulation work."
+          "answer": "The disclosures report 6,000 accelerators, about 19 trillion tokens and roughly 30 percent model FLOP utilization, alongside substantial systems work. These are resource and engineering demands, not a measured cost penalty against a matched unrestricted run."
         },
         {
           "id": "dependency",
           "label": "Outside dependency",
           "status": "Reduced",
-          "answer": "Ascend and Huawei’s CANN/MindSpeed layers are domestic, but the disclosed stack also uses open-source PyTorch, Transformers, and NVIDIA-origin Megatron-LM. Public evidence does not resolve HBM, fabrication equipment, packaging, optics, or the provenance of every die."
+          "answer": "Ascend and Huawei’s CANN/MindSpeed layers reduce direct dependence on foreign accelerators. HBM, fabrication equipment, packaging, optics and die provenance remain unresolved. The use of foreign-origin open-source software is not, by itself, an enforceable dependency."
         },
         {
           "id": "enforcement",
@@ -337,7 +338,7 @@
       "title": "CloudMatrix384 serving DeepSeek-R1",
       "shortTitle": "CloudMatrix systems engineering",
       "date": "2025-06-19",
-      "period": "2025",
+      "period": "2025–2026",
       "responseTypes": [
         "systems-engineering"
       ],
@@ -356,7 +357,7 @@
           "id": "scale",
           "label": "Repeatable scale",
           "status": "Partial",
-          "answer": "Authors describe a 384-NPU production-grade architecture, but performance tests used a 256-NPU subset and fixed benchmark configurations."
+          "answer": "The original evaluation used 256 NPUs. Later disclosures describe production serving; Huawei also reports more than 300 Atlas 900 A3 SuperPoDs for over 20 customers. This is vendor evidence, not independently verified CloudMatrix-R1 fleet utilization."
         },
         {
           "id": "penalty",
@@ -368,7 +369,7 @@
           "id": "dependency",
           "label": "Outside dependency",
           "status": "Reduced",
-          "answer": "Huawei designed the accelerator, CPU, and CANN layers, while the disclosed stack interoperates with PyTorch, TensorFlow, ONNX, and Kubernetes; HBM, fab tools, packaging, and high-speed optics remain unresolved."
+          "answer": "Huawei supplies the accelerator, CPU and CANN layers. Upstream fabrication, HBM, packaging and optics remain unresolved; interoperability with foreign-origin open-source software is not itself proof of a controllable dependency."
         },
         {
           "id": "enforcement",
@@ -380,7 +381,7 @@
           "id": "future",
           "label": "Next generation",
           "status": "Current inference",
-          "answer": "Evidence supports vendor-cloud testbed inference, not independently verified production service or frontier pretraining."
+          "answer": "Later xDeepServe disclosures support vendor-reported production inference. Independent service economics, frontier pretraining and sustainable next-generation supply remain unverified."
         }
       ],
       "evidenceIds": [
@@ -388,7 +389,9 @@
         "ev-cloudmatrix-performance",
         "ev-cloudmatrix-limits",
         "ev-cloudmatrix-power",
-        "ev-pangu-upstream"
+        "ev-pangu-upstream",
+        "ev-cloudmatrix-deployment",
+        "ev-cloudmatrix-production"
       ],
       "uncertainties": [
         "Independent reproduction",
@@ -693,7 +696,7 @@
       "location": "Abstract; sections 3.2–3.4",
       "counterevidence": "The paper is authored by Huawei and SiliconFlow researchers and is not peer reviewed.",
       "confidence": "High",
-      "remainingUncertainty": "Public fleet volume and production availability outside the disclosed deployment are unknown.",
+      "remainingUncertainty": "Vendor deployment claims now exist. Independent utilization, reliability, metered power and total cost across the reported fleet remain unverified.",
       "relationship": "supports"
     },
     {
@@ -848,6 +851,40 @@
       "confidence": "High",
       "remainingUncertainty": "Firm-level pre-control and legacy inventories remain largely undisclosed.",
       "relationship": "qualifies"
+    },
+    {
+      "id": "ev-cloudmatrix-deployment",
+      "caseIds": [
+        "case-cloudmatrix"
+      ],
+      "claim": "Huawei reports commercial deployment of the Atlas 900 A3 platform underlying CloudMatrix384.",
+      "sourceId": "huawei-superpod-deployment",
+      "sourceType": "Company disclosure",
+      "publicationDate": "2025-09-18",
+      "accessDate": "2026-09-11",
+      "quotationOrData": "Huawei reported more than 300 Atlas 900 A3 SuperPoDs serving over 20 customers and identified CloudMatrix384 as a cloud service built on that platform.",
+      "location": "HUAWEI CONNECT 2025 keynote, Atlas 900 A3 deployment discussion",
+      "counterevidence": "This is a vendor statement. The count covers Atlas systems across customers, not independently audited CloudMatrix instances running DeepSeek-R1.",
+      "confidence": "Moderate",
+      "remainingUncertainty": "Utilization, model mix, uptime, delivered capacity, metered energy and total cost are not independently established.",
+      "relationship": "supports"
+    },
+    {
+      "id": "ev-cloudmatrix-production",
+      "caseIds": [
+        "case-cloudmatrix"
+      ],
+      "claim": "A later Huawei technical disclosure describes production model serving with xDeepServe on CloudMatrix384.",
+      "sourceId": "cloudmatrix-maas-paper",
+      "sourceType": "Technical preprint",
+      "publicationDate": "2025-08-04",
+      "accessDate": "2026-09-11",
+      "quotationOrData": "Version 6 reports 900 ms time to first token and 34.8 ms average time per output token for a representative production workload. Its separate fixed-length peak-decoding test reports 2,400 tokens per second per Ascend 910C chip near 50 ms per output token.",
+      "location": "Version 6 (1 March 2026), sections 7.1–7.2; representative production setup versus peak decoding",
+      "counterevidence": "Vendor-authored and not independently reproduced. Peak throughput and production latency refer to different configurations and workloads; they must not be combined into a single performance claim.",
+      "confidence": "Moderate",
+      "remainingUncertainty": "The disclosure does not establish independently metered power, total cost, fleet-wide reliability or like-for-like parity with a competing system.",
+      "relationship": "supports"
     }
   ],
   "sources": [
@@ -1179,6 +1216,26 @@
       "sourceType": "Government audit",
       "publicationDate": "2024-12-02",
       "accessDate": "2026-09-03",
+      "primary": true
+    },
+    {
+      "id": "huawei-superpod-deployment",
+      "title": "Groundbreaking SuperPoD Interconnect: Leading a New Paradigm for AI Infrastructure",
+      "organization": "Huawei",
+      "url": "https://www.huawei.com/en/news/2025/9/hc-xu-keynote-speech",
+      "sourceType": "Company disclosure",
+      "publicationDate": "2025-09-18",
+      "accessDate": "2026-09-11",
+      "primary": true
+    },
+    {
+      "id": "cloudmatrix-maas-paper",
+      "title": "Huawei Cloud Model-as-a-Service on the CloudMatrix384 SuperPod",
+      "organization": "Huawei",
+      "url": "https://arxiv.org/html/2508.02520v6",
+      "sourceType": "Technical preprint",
+      "publicationDate": "2025-08-04",
+      "accessDate": "2026-09-11",
       "primary": true
     }
   ]

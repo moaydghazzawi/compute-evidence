@@ -1,6 +1,6 @@
 # Website summary
 
-## Proposed title
+## Title
 
 When Controls Raise the Cost
 
@@ -10,124 +10,64 @@ China’s Responses to U.S. Advanced-Compute Restrictions
 
 ## Short description
 
-An evidence-led comparison of whether Chinese AI responses have weakened U.S. advanced-compute controls—or made progress costlier and more dependent.
+A citation-backed comparison of Chinese AI responses to U.S. chip restrictions, examining capability, resource demands, foreign dependence, and enforcement risk.
 
-## Central question
+## Public links
 
-Since October 2022, which Chinese responses have actually weakened U.S. controls on advanced AI chips, and which have only made Chinese AI development more expensive, slower, or more dependent on outside technology?
+- [Research product](https://when-controls-raise-the-cost.moaydghazzawi.com)
+- [GitHub repository](https://github.com/moaydghazzawi/when-controls-raise-the-cost)
+- [Evidence library](https://when-controls-raise-the-cost.moaydghazzawi.com/evidence)
+- [Methodology](https://when-controls-raise-the-cost.moaydghazzawi.com/methodology)
+- [Complete JSON dataset](https://when-controls-raise-the-cost.moaydghazzawi.com/data/research-dataset.json)
+- [Complete CSV evidence export](https://when-controls-raise-the-cost.moaydghazzawi.com/data/evidence.csv)
 
 ## Two-minute summary
 
-Chinese AI progress is real, but progress and control failure are not synonyms.
+Chinese AI progress is real. That does not, by itself, tell us whether export controls have failed.
 
-DeepSeek-V3 shows that efficient model and systems design can stretch a restricted Nvidia H800 fleet. Huawei’s Pangu Ultra shows that thousands of domestic Ascend accelerators can complete a very-large-model training run, weakening the narrow claim that top U.S. accelerators are indispensable. CloudMatrix384 shows that system design can recover useful inference performance by pooling many weaker devices. A U.S. prosecution also shows that restricted H100 and H200 chips moved through a diversion network.
+DeepSeek-V3 demonstrates efficient use of a restricted Nvidia H800 fleet. Huawei reports training Pangu Ultra on thousands of Ascend accelerators, challenging the narrow claim that controlled U.S. accelerators are indispensable for a large training run. CloudMatrix shows useful inference through system-level engineering, with later vendor disclosures describing deployment and production serving. Operation Gatekeeper documents a diversion route for restricted chips. Public subsidy programs establish that state support exists, but the reviewed evidence does not link it to specific capability outcomes.
 
-Each case has a different implication. DeepSeek remained dependent on controlled foreign hardware. The Huawei cases reduce dependence at the accelerator layer but leave fabrication, high-bandwidth memory, power, networking, production volume, and economics unresolved. Smuggling is an enforcement failure, not technological independence. Public subsidy programs show support exists but do not yet connect a named recipient, restored capability, and net cost.
+Those are different findings. DeepSeek still relied on controlled foreign hardware. The Huawei cases leave upstream supply, independent replication, power and economics unresolved. Diversion bypasses enforcement without creating technological independence. Resource demands also cannot tell us the extra cost caused by controls without a credible comparison.
 
-The current finding is that one response weakens a narrow control point, while none proves system-wide independence. The evidence is more consistent with controls imposing friction and shifting costs than with either an absolute technological blockade or complete policy failure.
-
-## Why it matters
-
-Debate about export controls often treats visible Chinese AI progress as proof that the controls failed. That skips the central policy question: what additional hardware, energy, money, engineering, delay, foreign dependence, or enforcement risk was required to produce the result?
-
-This project separates capability from cost and independence from circumvention.
+The current assessment is narrow: one vendor-reported case weakens direct accelerator denial; none establishes broad supply-chain independence. Each judgment is provisional, tied to sources, and accompanied by evidence that could change it.
 
 ## Method
 
-Every case receives the same six-question test:
+Each case receives six questions: capability restored, repeatable scale, extra resources, outside dependence, resilience to enforcement, and next-generation potential.
 
-1. What AI capability was restored, and on which tasks?
-2. Can it work repeatedly at useful scale?
-3. What extra hardware, electricity, money, engineering, or time does it require?
-4. Does it reduce dependence on technology controlled by the United States or its allies?
-5. Could a realistic enforcement change break the workaround?
-6. Can it support the next generation of development, or only current needs?
+The evidence library shows the claim, source, publication and access dates, quotation or reported data, exact location, counterevidence, confidence and uncertainty. Readers can compare all six dimensions, share filtered views, inspect source records and export the displayed evidence.
 
-Evidence is classified as genuine weakening, adaptation with a continuing cost penalty, circumvention without technological independence, or insufficient evidence. Every record includes its source, dates, quotation/data, locator, counterevidence, confidence, and remaining uncertainty.
+A primary source establishes what an original or official source reports. It is not a synonym for independent verification.
 
 ## Current status
 
-- Version: 0.1.0
-- Status: defensible MVP
-- Evidence reviewed through: 3 September 2026
-- Policy timeline events: 8
-- Cases: 5
-- Evidence records: 19
-- Sources: 33
-- Primary sources for the recorded proposition: 31
-- Publication status: private pending review
+- Public research edition: 0.2.0
+- Five cases, eight policy milestones, 21 evidence records and 35 sources
+- 33 sources are primary for the proposition recorded
+- Evidence cutoff: 3 September 2026
+- Targeted review and interface revamp: 11 September 2026
+- The targeted review added two previously omitted primary sources within the cutoff; it did not advance the comprehensive evidence window.
+- Public publication approved; private background material remains excluded.
+- Licensing recommendation remains open for the owner to select.
 
-## Key evidence and links
+## Key source trail
 
-### DeepSeek-V3: compute efficiency with continuing dependence
-
-DeepSeek disclosed a 671-billion-parameter mixture-of-experts model trained on 14.8 trillion tokens using 2.788 million Nvidia H800 GPU-hours. Its widely repeated $5.576 million figure is a rental-equivalent estimate for the disclosed final training run, not a complete program cost. On METR’s autonomy suite, DeepSeek-V3 was comparable to Claude 3.5 Sonnet (Old) while trailing newer frontier models.
-
-- [DeepSeek-V3 Technical Report](https://arxiv.org/abs/2412.19437)
-- [METR DeepSeek-V3 Evaluation Report](https://evals.alignment.org/evaluations/deepseek-v3-report/)
-- [NVIDIA fiscal 2024 Form 10-K](https://www.sec.gov/Archives/edgar/data/1045810/000104581024000029/nvda-20240128.htm)
-
-### Pangu Ultra: narrow domestic substitution
-
-Huawei reports training a 718-billion-parameter model from scratch on Ascend and says its system supports all training stages. That weakens the direct claim that controlled U.S. accelerators are indispensable for a large run. The disclosed software stack also uses PyTorch, Transformers, and NVIDIA-origin Megatron-LM, and the evidence does not resolve fleet availability, energy, capital cost, HBM, fabrication, packaging, or other upstream dependence.
-
-- [Pangu Ultra MoE technical preprint](https://arxiv.org/html/2505.04519)
-- [openPangu Ultra MoE model repository](https://huggingface.co/openpangu/openPangu-Ultra-MoE-718B-model)
-- [BIS guidance on PRC advanced-computing ICs](https://www.bis.gov/media/documents/general-prohibition-10-guidance-may-13-2025.pdf)
-
-### CloudMatrix384: systems engineering shifts the constraint
-
-Huawei and SiliconFlow described a system connecting 384 Ascend NPUs and 192 Kunpeng CPUs. Their fixed-configuration DeepSeek-R1 tests used 256 NPUs and reported useful inference throughput, but comparisons vary with latency target, MTP assumptions, batch size, and implementation. Independent evidence of production service, metered cost, power, reliability, and full supply-chain provenance remains unavailable.
-
-- [Serving Large Language Models on Huawei CloudMatrix384](https://arxiv.org/html/2506.12708v3)
-- [SemiAnalysis CloudMatrix384 assessment](https://newsletter.semianalysis.com/p/huawei-ai-cloudmatrix-384-chinas-answer-to-nvidia-gb200-nvl72)
-
-### Operation Gatekeeper: diversion without independence
-
-A company and its owner pleaded guilty in a scheme involving at least $160 million in exported and attempted H100 and H200 shipments. The case demonstrates material enforcement leakage, but not how many chips reached end users or which AI capability they produced.
-
-- [U.S. Department of Justice Operation Gatekeeper release](https://www.justice.gov/opa/pr/us-authorities-shut-down-major-china-linked-ai-tech-smuggling-network)
-- [BIS counter-diversion guidance](https://media.bis.gov/media/documents/ai-counter-diversion-industry-guidance-may-13-2025.pdf)
-
-### State support and stockpiling: policy exists, causal evidence does not
-
-National tax preferences and a Hangzhou compute-support policy show that public support mechanisms exist. The reviewed evidence does not identify relevant recipients, actual disbursements, hardware origin, or capability produced per yuan. A GAO report records stockpiling as a regulatory concern, not proof of a particular Chinese inventory.
-
-- [2024 integrated-circuit and software tax-preference notice](https://www.ndrc.gov.cn/xwdt/tzgg/202403/t20240322_1365170.html)
-- [Hangzhou artificial-intelligence support measures (official PDF)](https://zjjcmspublic.oss-cn-hangzhou-zwynet-d01-a.internet.cloud.zj.gov.cn/jcms_files/jcms1/web149/site/attach/0/a6c3459cc18f497c97e7e592bd9e318f.pdf)
+- [DeepSeek-V3 technical report](https://arxiv.org/abs/2412.19437)
+- [METR’s independent DeepSeek-V3 evaluation](https://evals.alignment.org/evaluations/deepseek-v3-report/)
+- [Pangu Ultra technical preprint](https://arxiv.org/html/2505.04519)
+- [openPangu model repository](https://huggingface.co/openpangu/openPangu-Ultra-MoE-718B-model)
+- [CloudMatrix original technical disclosure](https://arxiv.org/html/2506.12708v3)
+- [Huawei deployment disclosure](https://www.huawei.com/en/news/2025/9/hc-xu-keynote-speech)
+- [CloudMatrix production-serving disclosure, version 6](https://arxiv.org/html/2508.02520v6)
+- [U.S. Department of Justice: Operation Gatekeeper](https://www.justice.gov/opa/pr/us-authorities-shut-down-major-china-linked-ai-tech-smuggling-network)
 - [GAO-25-107386](https://www.gao.gov/products/gao-25-107386)
 
-## What would change the finding
+The complete source registry, including all timeline rules, is in the downloadable dataset.
 
-- Independently audited frontier-scale training on domestically fabricated accelerators, repeated at useful volume with disclosed HBM, yield, power, and cost
-- Metered CloudMatrix deployments showing total-cost and power parity
-- Durable next-generation chip or cloud access after realistic customer, ownership, and data-center checks
-- Audited firm-level evidence showing no material delay, redesign, inventory drawdown, or cost increase after a matched rule change
-- Sustained shortages, unmet demand, delayed projects, or falling training scale would strengthen the opposite conclusion
+## What would change the assessment
 
-## Links for a future portfolio entry
+Independent, repeated domestic training with disclosed upstream provenance and economics; metered production inference comparisons; durable next-generation access after realistic enforcement; or audited firm-level evidence isolating the effect of a rule change. Documented shortages, delays and unmet demand could strengthen the opposite reading.
 
-Keep the repository and any live deployment private until publication is approved.
+## Portfolio call to action
 
-- Proposed repository: `https://github.com/moaydghazzawi/when-controls-raise-the-cost`
-- Live research product: add only after publication approval
-- JSON dataset: `/data/research-dataset.json`
-- CSV evidence export: `/data/evidence.csv`
-- Methodology: `/methodology`
-- Evidence ledger: `/evidence`
-- Social preview: `/og.png`
-
-## Suggested portfolio call to action
-
-**Explore the evidence ledger.** Compare five response mechanisms, inspect the evidence behind each judgment, and download the research data.
-
-## Publication checklist
-
-- Recheck rule status against current authoritative sources
-- Review vendor-authored performance claims and caveats
-- Preserve the narrow scope of the Pangu “genuine weakening” judgment
-- Confirm accessibility and responsive-layout results
-- Confirm screenshot and social-image rights
-- Refresh access dates where material has been rereviewed
-- Approve repository licensing
-- Audit every tracked file for private or unrelated material
+Explore the evidence. Compare five response mechanisms, inspect the support and uncertainty behind each judgment, and download the research data.

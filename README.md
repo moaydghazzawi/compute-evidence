@@ -2,9 +2,11 @@
 
 **China’s Responses to U.S. Advanced-Compute Restrictions**
 
-> Status: defensible MVP · version 0.1.0<br>
+> Status: public research edition · version 0.2.0<br>
 > Evidence reviewed through: 3 September 2026<br>
-> Repository status: private pending publication review
+> Targeted research review and product revamp: 11 September 2026
+
+[Live research site](https://when-controls-raise-the-cost.moaydghazzawi.com) · [Public GitHub repository](https://github.com/moaydghazzawi/when-controls-raise-the-cost)
 
 This project asks:
 
@@ -14,12 +16,12 @@ It is a standalone, citation-backed evidence ledger for comparing technical adap
 
 ## Current finding
 
-**One response weakens a narrow control point; none proves system-wide independence.**
+**One vendor-reported case weakens direct accelerator denial. None establishes broad supply-chain independence.**
 
-The reviewed public record shows meaningful adaptation, one narrow case of functional substitution, and real enforcement leakage. It does not show that Chinese developers have escaped the cost, scale, or supply-chain consequences of U.S. controls.
+The record supports useful adaptation, narrow functional substitution and enforcement leakage. It does not establish broad supply-chain independence or measure how much extra cost the controls caused.
 
 - DeepSeek-V3 shows that algorithm and systems design can stretch a restricted Nvidia H800 fleet.
-- Huawei’s Pangu Ultra shows that a very large model can be trained on thousands of domestic Ascend accelerators, weakening the narrow claim that top U.S. accelerators are indispensable.
+- Huawei reports that Pangu Ultra, a very large model, was trained on thousands of domestic Ascend accelerators, weakening the narrow claim that top U.S. accelerators are indispensable.
 - CloudMatrix384 shows that systems engineering can recover useful inference performance by pooling many weaker devices.
 - Operation Gatekeeper shows material diversion of controlled H100 and H200 accelerators.
 - Chinese tax preferences and local compute support show that public support exists, but the reviewed record does not connect that support to a named recipient’s restored capability or net cost.
@@ -28,11 +30,13 @@ The evidence is more consistent with controls imposing friction and shifting cos
 
 ## Product contents
 
+The 0.2 revamp adds a responsive editorial layout, URL-persisted case filters, exact case links, an interactive six-dimension matrix, searchable evidence with subset exports, and expandable source/counterevidence records. The interface, documentation and exports use one canonical dataset.
+
 - Eight-event policy timeline beginning with the October 2022 controls
 - Five structured response cases
 - The same six-question test applied to every case
-- Nineteen evidence records with claims, locations, counterevidence, confidence, and uncertainty
-- Thirty-three sources; thirty-one are primary for the narrow claim recorded
+- Twenty-one evidence records with claims, locations, counterevidence, confidence, and uncertainty
+- Thirty-five sources; thirty-three are primary for the narrow claim recorded
 - Four explicit judgment classes
 - Filters for response type, date, source type, confidence, and dependency
 - Downloadable JSON and CSV
@@ -41,15 +45,15 @@ The evidence is more consistent with controls imposing friction and shifting cos
 
 ## Current case matrix
 
-| Response | Case | Judgment | Confidence | Dependency finding |
-|---|---|---|---|---|
-| Compute efficiency | DeepSeek-V3 on Nvidia H800 | Adaptation + cost penalty | Moderate | Foreign-controlled hardware |
-| Domestic substitutes | Pangu Ultra MoE on 6,000 Ascend NPUs | Genuine weakening | Moderate | Reduced; upstream unresolved |
-| Systems engineering | CloudMatrix384 serving DeepSeek-R1 | Adaptation + cost penalty | Moderate | Reduced; upstream unresolved |
-| Rerouted access | Operation Gatekeeper GPU diversion network | Circumvention, not independence | Moderate | Foreign access route |
-| Stockpiling and state support | Tax preferences and local compute subsidies | Insufficient evidence | Low | Unknown |
+| Response                      | Case                                        | Judgment                        | Confidence | Dependency finding           |
+| ----------------------------- | ------------------------------------------- | ------------------------------- | ---------- | ---------------------------- |
+| Compute efficiency            | DeepSeek-V3 on Nvidia H800                  | Adaptation + cost penalty       | Moderate   | Foreign-controlled hardware  |
+| Domestic substitutes          | Pangu Ultra MoE on 6,000 Ascend NPUs        | Narrow control-point weakening  | Moderate   | Reduced; upstream unresolved |
+| Systems engineering           | CloudMatrix384 serving DeepSeek-R1          | Adaptation + cost penalty       | Moderate   | Reduced; upstream unresolved |
+| Rerouted access               | Operation Gatekeeper GPU diversion network  | Circumvention, not independence | Moderate   | Foreign access route         |
+| Stockpiling and state support | Tax preferences and local compute subsidies | Insufficient evidence           | Low        | Unknown                      |
 
-“Genuine weakening” is deliberately narrow. The Pangu finding applies to the direct finished-accelerator control point; it does not establish independence from HBM, fabrication equipment, packaging, design software, optics, or other upstream inputs.
+“Narrow control-point weakening” is deliberately narrow. The Pangu finding applies to the direct finished-accelerator control point; it does not establish independence from HBM, fabrication equipment, packaging, design software, optics, or other upstream inputs.
 
 ## Method
 
@@ -64,8 +68,8 @@ Every case receives the same questions:
 
 Cases then receive one of four provisional judgments:
 
-- **Genuine weakening:** capability is restored at useful scale while dependence falls at the targeted control point.
-- **Adaptation + cost penalty:** capability is real, but added hardware, energy, time, engineering, or outside dependence remains.
+- **Narrow control-point weakening:** capability is restored at useful scale while dependence falls at the targeted control point.
+- **Adaptation + cost penalty:** capability coexists with substantial resource demands or controlled foreign-hardware dependence. This qualitative label is not an estimate of the causal cost premium imposed by controls.
 - **Circumvention, not independence:** access bypasses enforcement but remains tied to controlled foreign technology and a disruptable route.
 - **Insufficient evidence:** the public record cannot connect the response to restored capability, useful scale, or a particular rule.
 
@@ -96,7 +100,7 @@ A source marked `primary` is original or official for the recorded proposition. 
 - Benchmarks mix algorithms, data, hardware, and implementation choices; they do not isolate the causal effect of export controls.
 - Enforcement cases reveal detected schemes, not the prevalence of undetected diversion or the capability ultimately produced.
 - The control regime changed repeatedly, so each response must be matched to the rule and license policy in force at the relevant time.
-- This MVP is selective rather than exhaustive. It favors inspectable evidence and labels missing facts rather than estimating them.
+- This study is selective rather than exhaustive. It favors inspectable evidence and labels missing facts rather than estimating them.
 
 The project describes export-control policy for research purposes and is not legal advice.
 
@@ -139,7 +143,7 @@ pnpm exec playwright install chromium
 pnpm test:browser
 ```
 
-The browser suite starts an isolated local server and checks both 1440×900 and 390×844 viewports. It covers serious/critical accessibility violations, console errors, page overflow, mobile navigation, public metadata, all five filter dimensions, filtered evidence URLs, search and reset behavior, keyboard order, JSON/CSV integrity, and download links.
+The browser suite starts an isolated local server and checks both 1440×900 and 390×844 viewports. It covers serious/critical accessibility violations, console errors, page overflow, mobile navigation, public metadata, all six filter dimensions, case and evidence permalinks, reload/history restoration, filtered CSV exports, clipboard fallbacks, search and reset behavior, keyboard order, JSON/CSV integrity, and download links.
 
 Refresh the signed-off repository screenshots explicitly:
 
@@ -167,7 +171,7 @@ pnpm lint
 pnpm build
 ```
 
-All 33 public source URLs returned HTTP 200 during the 3 September 2026 review. `check:links` is intentionally not part of CI because third-party availability and bot policies can make network checks nondeterministic.
+The original 33 source URLs were checked on 3 September 2026. Two additional primary sources were inspected on 11 September; existing source access dates remain unchanged. A targeted update is not a claim that every policy or source was comprehensively rereviewed. `check:links` is intentionally not part of CI because third-party availability and bot policies can make network checks nondeterministic.
 
 ## Data
 
@@ -182,7 +186,7 @@ To update the record:
 
 1. Edit `data/research.json`.
 2. Keep every claim scoped and sourced; record counterevidence and uncertainty.
-3. Update `meta.evidenceThrough` and access dates only after actual review.
+3. Update source access dates only after inspecting those sources. `meta.reviewedOn` records a targeted review; advance `meta.evidenceThrough` only after updating the covered period.
 4. Run `pnpm check:schema`, `pnpm check:citations`, and `pnpm build:data`.
 5. Inspect the JSON/CSV diff and run `pnpm verify` plus `pnpm test:browser`.
 
@@ -227,12 +231,12 @@ LICENSE-RECOMMENDATION.md          Proposed code/content licensing split
 
 ## Privacy and publication status
 
-The repository is intentionally private until publication is approved. It must not contain private background documents, planning notes, credentials, conversations, or unrelated files.
+The owner has approved public publication. The repository and live site are public. Private background documents, planning notes, credentials, conversations, and unrelated files remain excluded.
 
 The private research-direction document used as background during development is outside this repository. It is not copied, quoted, committed, or published.
 
 ## License
 
-No open-source license has been applied. Until the owner approves publication and adds license files, no reuse permission should be inferred.
+No open-source license has been applied. Public visibility alone does not grant an open-source license; no broad reuse permission should be inferred until the owner selects and applies a license.
 
 The recommended approach is MIT for original code and CC BY 4.0 for original research prose and structured data, with third-party material excluded. See [`LICENSE-RECOMMENDATION.md`](LICENSE-RECOMMENDATION.md).

@@ -77,6 +77,7 @@ export interface ResearchData {
     status: string;
     evidenceThrough: string;
     accessed: string;
+    reviewedOn: string;
     currentFinding: string;
     summary: string;
     conversationSummary: string;
