@@ -255,7 +255,7 @@ export function CaseExplorer({
             {count ? ' (' + count + ')' : ''}
           </Button>
         </div>
-        <div className="filters-grid">
+        <div className="case-primary-filters">
           <FilterSelect
             label="Response type"
             allLabel="All responses"
@@ -263,41 +263,56 @@ export function CaseExplorer({
             onChange={(response) => update({ response })}
             options={responseTypes.map((item) => [item.id, item.label])}
           />
-          <FilterSelect
-            label="Case date"
-            allLabel="All anchor years"
-            value={state.year}
-            onChange={(year) => update({ year })}
-            options={years.map((item) => [item, item])}
-          />
-          <FilterSelect
-            label="Source type"
-            allLabel="All source types"
-            value={state.source}
-            onChange={(source) => update({ source })}
-            options={sourceTypes.map((item) => [item, item])}
-          />
-          <FilterSelect
-            label="Confidence"
-            allLabel="Any confidence"
-            value={state.confidence}
-            onChange={(confidence) => update({ confidence })}
-            options={['High', 'Moderate', 'Low'].map((item) => [item, item])}
-          />
-          <FilterSelect
-            label="Dependency"
-            allLabel="Any dependency"
-            value={state.dependency}
-            onChange={(dependency) => update({ dependency })}
-            options={dependencies.map((item) => [item, item])}
-          />
-          <FilterSelect
-            label="Judgment"
-            allLabel="All judgments"
-            value={state.judgment}
-            onChange={(judgment) => update({ judgment })}
-            options={classifications.map((item) => [item.id, item.label])}
-          />
+          <details className="case-more-filters">
+            <summary>
+              More filters
+              {['year', 'source', 'confidence', 'dependency', 'judgment'].some(
+                (key) => state[key as keyof typeof state] !== 'all',
+              )
+                ? ' · active'
+                : ''}
+            </summary>
+            <div className="filters-grid">
+              <FilterSelect
+                label="Case date"
+                allLabel="All years"
+                value={state.year}
+                onChange={(year) => update({ year })}
+                options={years.map((item) => [item, item])}
+              />
+              <FilterSelect
+                label="Source type"
+                allLabel="All source types"
+                value={state.source}
+                onChange={(source) => update({ source })}
+                options={sourceTypes.map((item) => [item, item])}
+              />
+              <FilterSelect
+                label="Confidence"
+                allLabel="Any confidence"
+                value={state.confidence}
+                onChange={(confidence) => update({ confidence })}
+                options={['High', 'Moderate', 'Low'].map((item) => [
+                  item,
+                  item,
+                ])}
+              />
+              <FilterSelect
+                label="Dependency"
+                allLabel="Any dependency"
+                value={state.dependency}
+                onChange={(dependency) => update({ dependency })}
+                options={dependencies.map((item) => [item, item])}
+              />
+              <FilterSelect
+                label="Judgment"
+                allLabel="All judgments"
+                value={state.judgment}
+                onChange={(judgment) => update({ judgment })}
+                options={classifications.map((item) => [item.id, item.label])}
+              />
+            </div>
+          </details>
         </div>
       </div>
       {filtered.length ? (
@@ -368,7 +383,9 @@ export function CaseExplorer({
                     <span className="eyebrow-divider">/</span>{' '}
                     {activeCase.period}
                   </span>
-                  <CopyLink path={'/?case=' + activeCase.id + '#cases'} />
+                  <CopyLink
+                    path={'/research?case=' + activeCase.id + '#cases'}
+                  />
                 </div>
                 <h3 id={activeCase.id + '-title'} tabIndex={-1} ref={detailRef}>
                   {activeCase.title}

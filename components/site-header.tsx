@@ -1,17 +1,18 @@
 'use client';
 import { useEffect, useRef } from 'react';
 import { ArrowDownToLine, Menu, ArrowUpRight } from 'lucide-react';
+import { TOOL_NAME } from '@/lib/site-identity';
 const nav = [
-  { href: '/#cases', label: 'Cases' },
-  { href: '/#matrix', label: 'Matrix' },
-  { href: '/#timeline', label: 'Timeline' },
+  { href: '/', label: 'Home' },
+  { href: '/desk', label: 'Research desk' },
+  { href: '/research', label: 'Research' },
   { href: '/evidence', label: 'Evidence' },
   { href: '/methodology', label: 'Method' },
 ];
 export function SiteHeader({
   current,
 }: {
-  current?: 'overview' | 'evidence' | 'methodology';
+  current?: 'home' | 'overview' | 'desk' | 'evidence' | 'methodology';
 }) {
   const menuRef = useRef<HTMLDetailsElement>(null);
   useEffect(() => {
@@ -27,18 +28,13 @@ export function SiteHeader({
   return (
     <header className="site-header">
       <div className="page-width header-inner">
-        <a
-          className="site-brand"
-          href="/"
-          aria-label="When Controls Raise the Cost, home"
-        >
+        <a className="site-brand" href="/" aria-label={`${TOOL_NAME}, home`}>
           <span className="brand-mark" aria-hidden="true">
-            W<span>/</span>C
+            ce
           </span>
           <span className="brand-title">
-            When Controls
-            <br />
-            Raise the Cost
+            {TOOL_NAME}
+            <span className="brand-caption">Chips · AI · Policy</span>
           </span>
         </a>
         <nav className="desktop-nav" aria-label="Primary">
@@ -46,7 +42,16 @@ export function SiteHeader({
             <a
               href={item.href}
               key={item.href}
-              aria-current={item.href === '/' + current ? 'page' : undefined}
+              aria-current={
+                item.href ===
+                (current === 'home'
+                  ? '/'
+                  : current === 'overview'
+                    ? '/research'
+                    : '/' + current)
+                  ? 'page'
+                  : undefined
+              }
             >
               {item.label}
             </a>

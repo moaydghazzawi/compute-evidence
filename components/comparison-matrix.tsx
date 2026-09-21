@@ -50,7 +50,7 @@ export function ComparisonMatrix({
               return (
                 <tr key={item.id}>
                   <th scope="row">
-                    <a href={'/?case=' + item.id + '#cases'}>
+                    <a href={'/research?case=' + item.id + '#cases'}>
                       {item.shortTitle}
                       <ArrowUpRight size={15} aria-hidden="true" />
                     </a>

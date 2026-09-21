@@ -1,6 +1,9 @@
 import type { Metadata } from 'next';
+import { TOOL_NAME, TOOL_DESCRIPTION } from '@/lib/site-identity';
 
 import './globals.css';
+import './refinement.css';
+import './research-desk.css';
 
 const configuredSiteUrl =
   process.env.NEXT_PUBLIC_SITE_URL ??
@@ -15,12 +18,11 @@ const socialImageUrl = publicBaseUrl
 export const metadata: Metadata = {
   metadataBase: publicBaseUrl,
   title: {
-    default: 'When Controls Raise the Cost',
-    template: '%s | When Controls Raise the Cost',
+    default: TOOL_NAME,
+    template: `%s | ${TOOL_NAME}`,
   },
-  description:
-    'A citation-backed test of how Chinese AI development has adapted to U.S. advanced-compute restrictions.',
-  applicationName: 'When Controls Raise the Cost',
+  description: TOOL_DESCRIPTION,
+  applicationName: TOOL_NAME,
   authors: [{ name: 'Moayd Ghazzawi' }],
   creator: 'Moayd Ghazzawi',
   alternates: publicBaseUrl ? { canonical: '/' } : undefined,
@@ -32,9 +34,8 @@ export const metadata: Metadata = {
   openGraph: {
     type: 'website',
     url: publicBaseUrl ? '/' : undefined,
-    title: 'When Controls Raise the Cost',
-    description:
-      'China’s Responses to U.S. Advanced-Compute Restrictions—a citation-backed evidence ledger.',
+    title: TOOL_NAME,
+    description: TOOL_DESCRIPTION,
     images: socialImageUrl
       ? [
           {
@@ -48,9 +49,8 @@ export const metadata: Metadata = {
   },
   twitter: {
     card: 'summary_large_image',
-    title: 'When Controls Raise the Cost',
-    description:
-      'China’s Responses to U.S. Advanced-Compute Restrictions—a citation-backed evidence ledger.',
+    title: TOOL_NAME,
+    description: TOOL_DESCRIPTION,
     images: socialImageUrl ? [socialImageUrl] : undefined,
   },
 };

@@ -1,4 +1,4 @@
-import { mkdir } from 'node:fs/promises';
+import { mkdir, writeFile, rm } from 'node:fs/promises';
 import path from 'node:path';
 import { readFile } from 'node:fs/promises';
 const researchData = JSON.parse(
@@ -9,10 +9,37 @@ import AxeBuilder from '@axe-core/playwright';
 import { expect, test, type Page } from '@playwright/test';
 
 const routes = [
-  { path: '/', label: 'home' },
+  { path: '/', label: 'homepage' },
+  { path: '/research', label: 'research' },
   { path: '/evidence', label: 'evidence ledger' },
   { path: '/methodology', label: 'methodology' },
+  { path: '/desk', label: 'research desk' },
 ];
+
+test('local previews refuse private files and raw imports', async ({
+  request,
+}, testInfo) => {
+  const directory = path.join(process.cwd(), 'private');
+  const name = `preview-access-test-${testInfo.project.name}.json`;
+  const file = path.join(directory, name);
+  const marker = `private-audit-probe-${testInfo.project.name}`;
+  await mkdir(directory, { recursive: true });
+  await writeFile(file, JSON.stringify({ marker }));
+  try {
+    for (const url of [
+      `/private/${name}`,
+      `/private/${name}?raw`,
+      `/@fs${encodeURI(file)}`,
+      `/@fs${encodeURI(file)}?import`,
+    ]) {
+      const response = await request.get(url);
+      expect(response.status(), url).toBe(403);
+      expect(await response.text()).not.toContain(marker);
+    }
+  } finally {
+    await rm(file, { force: true });
+  }
+});
 
 async function openSettled(page: Page, pathname: string) {
   await page.goto(pathname, { waitUntil: 'domcontentloaded' });
@@ -54,6 +81,12 @@ test.describe('route quality gates', () => {
       page.on('pageerror', (error) => runtimeErrors.push(error.message));
       await openSettled(page, route.path);
       await expectNoPageOverflow(page);
+      await expect(page.locator('body')).not.toContainText(
+        /ChatGPT|Sign in|Log in/i,
+      );
+      await expect(page.locator('a[href*="signin-with-chatgpt"]')).toHaveCount(
+        0,
+      );
       const audit = await new AxeBuilder({ page }).analyze();
       const blocking = audit.violations.filter(
         ({ impact }) => impact === 'serious' || impact === 'critical',
@@ -73,7 +106,7 @@ test.describe('route quality gates', () => {
 test('all evidence filters produce the expected case and remain keyboard reachable', async ({
   page,
 }) => {
-  await openSettled(page, '/');
+  await openSettled(page, '/research');
   await expect(page.getByTestId('case-explorer')).toHaveAttribute(
     'data-hydrated',
     'true',
@@ -107,6 +140,7 @@ test('all evidence filters produce the expected case and remain keyboard reachab
     'rerouted-access',
     'Operation Gatekeeper GPU diversion network',
   );
+  await page.locator('.case-more-filters > summary').click();
   await checkSelect('Case date', '2024', 'DeepSeek-V3 on Nvidia H800');
   await checkSelect(
     'Source type',
@@ -145,7 +179,7 @@ test('JSON and CSV datasets are linked, downloadable, and populated', async ({
   page,
   request,
 }) => {
-  await openSettled(page, '/');
+  await openSettled(page, '/research');
   const jsonResponse = await request.get('/data/research-dataset.json');
   expect(jsonResponse.ok()).toBeTruthy();
   const dataset = await jsonResponse.json();
@@ -176,7 +210,7 @@ test('JSON and CSV datasets are linked, downloadable, and populated', async ({
 test('metadata avoids local share URLs and uses the SVG favicon', async ({
   page,
 }) => {
-  await openSettled(page, '/');
+  await openSettled(page, '/research');
   const metadata = await page.evaluate(() => ({
     canonical: document.querySelector<HTMLLinkElement>('link[rel="canonical"]')
       ?.href,
@@ -212,7 +246,13 @@ test('mobile navigation exposes every primary destination', async ({
   await page.locator('summary[aria-label="Open navigation menu"]').click();
 
   const mobileNav = page.getByRole('navigation', { name: 'Mobile primary' });
-  for (const label of ['Cases', 'Matrix', 'Timeline', 'Evidence', 'Method']) {
+  for (const label of [
+    'Research desk',
+    'Research',
+    'Evidence',
+    'Method',
+    'Home',
+  ]) {
     await expect(
       mobileNav.getByRole('link', { name: label, exact: true }),
     ).toBeVisible();
@@ -242,9 +282,10 @@ test('filtered evidence URLs expose the expected reciprocal record set', async (
 test('case permalinks survive reload, filtering, and browser history', async ({
   page,
 }) => {
-  await openSettled(page, '/?case=case-cloudmatrix#cases');
+  await openSettled(page, '/research?case=case-cloudmatrix#cases');
   const title = page.locator('.case-detail-header h3');
   await expect(title).toHaveText('CloudMatrix384 serving DeepSeek-R1');
+  await page.locator('.case-more-filters > summary').click();
   await page
     .getByRole('combobox', { name: 'Confidence', exact: true })
     .selectOption('Low');
@@ -261,10 +302,11 @@ test('case permalinks survive reload, filtering, and browser history', async ({
 test('invalid filter URLs recover and empty results can be reset', async ({
   page,
 }) => {
-  await openSettled(page, '/?case=missing&confidence=invalid');
+  await openSettled(page, '/research?case=missing&confidence=invalid');
   await expect(page.locator('.case-detail-header h3')).toHaveText(
     'DeepSeek-V3 on Nvidia H800',
   );
+  await page.locator('.case-more-filters > summary').click();
   await expect(
     page.getByRole('combobox', { name: 'Confidence', exact: true }),
   ).toHaveValue('all');
@@ -330,13 +372,16 @@ test('copy-link fallback offers the actual case permalink', async ({
       },
     });
   });
-  await openSettled(page, '/?case=case-cloudmatrix&confidence=Moderate#cases');
+  await openSettled(
+    page,
+    '/research?case=case-cloudmatrix&confidence=Moderate#cases',
+  );
   await page
     .locator('.case-detail')
     .getByRole('button', { name: 'Copy link', exact: true })
     .click();
   await expect(page.getByRole('textbox', { name: 'Link to copy' })).toHaveValue(
-    /\/\?case=case-cloudmatrix#cases$/,
+    /\/research\?case=case-cloudmatrix#cases$/,
   );
 });
 
@@ -344,7 +389,7 @@ test('mobile case picker preserves keyboard focus', async ({
   page,
 }, testInfo) => {
   test.skip(!testInfo.project.name.startsWith('mobile'), 'Mobile case picker');
-  await openSettled(page, '/');
+  await openSettled(page, '/research');
   const picker = page.getByRole('combobox', { name: 'Selected case' });
   await picker.focus();
   await picker.selectOption('case-cloudmatrix');
@@ -357,7 +402,7 @@ test('mobile case picker preserves keyboard focus', async ({
 test('all comparison dimensions and timeline source disclosures work', async ({
   page,
 }) => {
-  await openSettled(page, '/');
+  await openSettled(page, '/research');
   for (const dimension of researchData.cases[0].tests) {
     const button = page
       .getByRole('group', { name: 'Comparison dimension' })
@@ -385,7 +430,7 @@ test('all comparison dimensions and timeline source disclosures work', async ({
 test('captures the signed-off responsive overview @screenshot', async ({
   page,
 }, testInfo) => {
-  await openSettled(page, '/');
+  await openSettled(page, '/research');
   await page.locator('#cases').waitFor();
   const suffix = testInfo.project.name.startsWith('desktop')
     ? 'desktop'

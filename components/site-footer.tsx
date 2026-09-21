@@ -1,21 +1,25 @@
 import { ArrowUpRight } from 'lucide-react';
 import { researchData } from '@/lib/research';
 import { formatDate } from '@/lib/presentation';
+import { TOOL_NAME } from '@/lib/site-identity';
 export function SiteFooter() {
   return (
     <footer className="site-footer">
       <div className="page-width footer-main">
         <div>
           <a className="footer-title" href="/">
-            When Controls Raise the Cost
+            {TOOL_NAME}
           </a>
-          <p>Research and analysis by Moayd Ghazzawi.</p>
+          <p>Created by Moayd Ghazzawi.</p>
           <p className="footer-note">
             Judgments describe the reviewed public record. Evidence through{' '}
             {formatDate(researchData.meta.evidenceThrough)}.
           </p>
         </div>
         <nav aria-label="Footer">
+          <a href="/desk">Research desk</a>
+          <a href="/research">Research</a>
+          <a href="/">About the tool</a>
           <a href="/methodology">Methodology</a>
           <a href="/evidence">Evidence library</a>
           <a href="/data/research-dataset.json" download>

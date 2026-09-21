@@ -2,17 +2,17 @@
 
 ## Title
 
-When Controls Raise the Cost
+Compute Evidence
 
-## Subtitle
+## First research collection
 
-China’s Responses to U.S. Advanced-Compute Restrictions
+When Controls Raise the Cost: China’s Responses to U.S. Advanced-Compute Restrictions
 
 ## Short description
 
-A citation-backed comparison of Chinese AI responses to U.S. chip restrictions, examining capability, resource demands, foreign dependence, and enforcement risk.
+A public research tool by Moayd Ghazzawi. Test claims, examine counterevidence, and build cited briefs about chips, AI, and policy.
 
-## Public links
+## Existing public links
 
 - [Research product](https://when-controls-raise-the-cost.moaydghazzawi.com)
 - [GitHub repository](https://github.com/moaydghazzawi/when-controls-raise-the-cost)
@@ -21,7 +21,13 @@ A citation-backed comparison of Chinese AI responses to U.S. chip restrictions, 
 - [Complete JSON dataset](https://when-controls-raise-the-cost.moaydghazzawi.com/data/research-dataset.json)
 - [Complete CSV evidence export](https://when-controls-raise-the-cost.moaydghazzawi.com/data/evidence.csv)
 
-## Two-minute summary
+## Tool
+
+The homepage introduces Compute Evidence; its primary action opens the research desk with a working example. Visitors can search evidence, compare sources, inspect qualifications, and download cited briefs without an account. An optional connection uses the visitor’s own TypeSafe key for Jev assessments. No owner credential or ChatGPT sign-in is required.
+
+The homepage introduces the tool; the Research page retains the full study, comparison matrix, and timeline.
+
+## Two-minute research summary
 
 Chinese AI progress is real. That does not, by itself, tell us whether export controls have failed.
 
@@ -46,6 +52,8 @@ A primary source establishes what an original or official source reports. It is 
 - 33 sources are primary for the proposition recorded
 - Evidence cutoff: 3 September 2026
 - Targeted review and interface revamp: 11 September 2026
+- Compute Evidence tool redesign, targeted source corrections, and optional private Jev audit: 22 September 2026; evidence cutoff unchanged.
+- The Compute Evidence release is verified locally and approved for publication on 22 September 2026.
 - The targeted review added two previously omitted primary sources within the cutoff; it did not advance the comprehensive evidence window.
 - Public publication approved; private background material remains excluded.
 - Licensing recommendation remains open for the owner to select.

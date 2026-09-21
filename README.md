@@ -1,10 +1,12 @@
-# When Controls Raise the Cost
+# Compute Evidence
 
-**China’s Responses to U.S. Advanced-Compute Restrictions**
+**A research tool by Moayd Ghazzawi.** Test claims, examine counterevidence, and build cited briefs.
 
-> Status: public research edition · version 0.2.0<br>
+The first research collection is *When Controls Raise the Cost: China’s Responses to U.S. Advanced-Compute Restrictions*.
+
+> Status: Compute Evidence publication release · research dataset version 0.2.0<br>
 > Evidence reviewed through: 3 September 2026<br>
-> Targeted research review and product revamp: 11 September 2026
+> Targeted research review and tool redesign: 22 September 2026
 
 [Live research site](https://when-controls-raise-the-cost.moaydghazzawi.com) · [Public GitHub repository](https://github.com/moaydghazzawi/when-controls-raise-the-cost)
 
@@ -30,7 +32,9 @@ The evidence is more consistent with controls imposing friction and shifting cos
 
 ## Product contents
 
-The 0.2 revamp adds a responsive editorial layout, URL-persisted case filters, exact case links, an interactive six-dimension matrix, searchable evidence with subset exports, and expandable source/counterevidence records. The interface, documentation and exports use one canonical dataset.
+The homepage introduces Compute Evidence and opens the research desk at `/desk`, with four actions: test a claim, challenge a view, assess a new public source, and build a cited brief. Five saved examples, keyword search, source filters, manual evidence selection, and Markdown exports work without an account. Visitors can optionally use their own TypeSafe key for custom Jev judgments. No owner credential is deployed or used as a fallback.
+
+The original case explorer, matrix, and timeline are at `/research`; old case/filter/anchor links redirect there. `/evidence` retains searchable source records and subset exports, `/methodology` explains the research standard, and `/` introduces the tool (`/about` redirects to it). All views use one canonical research dataset. See [research desk architecture and privacy](docs/research-desk.md).
 
 - Eight-event policy timeline beginning with the October 2022 controls
 - Five structured response cases
@@ -110,7 +114,8 @@ Requirements:
 
 - Node.js 22.13 or later
 - pnpm 11.19.0
-- No paid service, account, or API key
+- Python 3.9+ for audit tooling/tests; `pypdf` for optional PDF source capture
+- No paid service, account, or API key required for browsing, examples, briefs, or tests; custom Jev assessments require the visitor’s own TypeSafe API access
 
 ```bash
 corepack enable
@@ -143,7 +148,7 @@ pnpm exec playwright install chromium
 pnpm test:browser
 ```
 
-The browser suite starts an isolated local server and checks both 1440×900 and 390×844 viewports. It covers serious/critical accessibility violations, console errors, page overflow, mobile navigation, public metadata, all six filter dimensions, case and evidence permalinks, reload/history restoration, filtered CSV exports, clipboard fallbacks, search and reset behavior, keyboard order, JSON/CSV integrity, and download links.
+The browser suite checks desktop and mobile layouts, accessibility, console errors, evidence filters, permalinks, exports, visitor-key handling, explicit request behavior, source-assessment provenance, cancellation, reduced motion, security headers, and the existing research workflows. Jev tests use fictional keys and mocked provider responses; they make no paid calls.
 
 Refresh the signed-off repository screenshots explicitly:
 
@@ -172,6 +177,10 @@ pnpm build
 ```
 
 The original 33 source URLs were checked on 3 September 2026. Two additional primary sources were inspected on 11 September; existing source access dates remain unchanged. A targeted update is not a claim that every policy or source was comprehensively rereviewed. `check:links` is intentionally not part of CI because third-party availability and bot policies can make network checks nondeterministic.
+
+The 22 September targeted review added an optional [Jev evidence audit](docs/jev-evidence-audit.md), corrected Pangu's 58.7% improvement to refer to MFU rather than throughput, clarified DeepSeek training-stage and quotation wording, made CloudMatrix's batch-size trade-off explicit, and repaired the Hangzhou policy citation. Only manually reviewed records have new access dates; the comprehensive evidence cutoff remains 3 September.
+
+Run `pnpm audit:evidence` to prepare a private source-support report and reuse cached results. `pnpm audit:evidence --live` explicitly calls TypeSafe for uncached inputs; source capture and credential setup are described in the audit guide. This optional workflow is separate from CI and the public website.
 
 ## Data
 
@@ -208,9 +217,11 @@ LICENSE-RECOMMENDATION.md          Proposed code/content licensing split
 
 ## Screenshots
 
-![Desktop overview of the research product](docs/screenshots/overview-desktop.png)
+![Compute Evidence homepage](docs/screenshots/home-desktop.png)
 
-![Mobile overview of the research product](docs/screenshots/overview-mobile.png)
+![Compute Evidence on desktop](docs/screenshots/desk-desktop.png)
+
+![Compute Evidence on mobile](docs/screenshots/desk-mobile.png)
 
 ## What would change the finding
 
@@ -230,6 +241,8 @@ LICENSE-RECOMMENDATION.md          Proposed code/content licensing split
 - Expand only when a case can pass the same evidence standard
 
 ## Privacy and publication status
+
+The redesigned release has completed local verification and is approved for publication. See [release verification](docs/release-readiness.md). Production requires no owner TypeSafe key or additional storage binding. A live paid provider call was deliberately not used for verification; request/response contracts and error paths are exercised with mocks against the current documented API.
 
 The owner has approved public publication. The repository and live site are public. Private background documents, planning notes, credentials, conversations, and unrelated files remain excluded.
 

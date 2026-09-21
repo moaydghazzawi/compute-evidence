@@ -1,238 +1,159 @@
-import { ArrowRight, ArrowUpRight, Download, BookOpen } from 'lucide-react';
-import { CaseExplorer } from '@/components/case-explorer';
-import { SiteFooter } from '@/components/site-footer';
+import { LegacyResearchRedirect } from '@/components/legacy-research-redirect';
+import { ArrowRight, ArrowUpRight } from 'lucide-react';
 import { SiteHeader } from '@/components/site-header';
-import { ComparisonMatrix } from '@/components/comparison-matrix';
+import { SiteFooter } from '@/components/site-footer';
 import { researchData } from '@/lib/research';
 import { formatDate } from '@/lib/presentation';
 
-const sourceById = new Map(
-  researchData.sources.map((source) => [source.id, source]),
-);
-
-export default function Home() {
+export default function HomePage() {
   return (
     <>
-      <SiteHeader current="overview" />
-      <main id="main-content">
-        <section className="overview-intro page-width">
-          <div className="intro-main">
-            <p className="eyebrow">
-              Research by Moayd Ghazzawi{' '}
-              <span className="eyebrow-divider">/</span> China & advanced
-              computing
-            </p>
-            <h1>
-              When Controls
-              <br />
-              <em>Raise the Cost.</em>
-            </h1>
-            <p className="intro-description">
-              How has Chinese AI development adapted to U.S. chip restrictions?
-              Examine the capability recovered, the cost incurred, and the
-              dependencies that remain.
-            </p>
-            <div className="intro-meta">
-              <span>
-                Evidence through{' '}
-                <time dateTime={researchData.meta.evidenceThrough}>
-                  {formatDate(researchData.meta.evidenceThrough)}
-                </time>
-              </span>
-              <a href="/methodology">
-                Read the research method{' '}
-                <ArrowUpRight size={14} aria-hidden="true" />
-              </a>
-            </div>
+      <LegacyResearchRedirect />
+      <SiteHeader current="home" />
+      <main id="main-content" className="about-page page-width">
+        <section className="about-intro">
+          <p className="desk-kicker">MEET COMPUTE EVIDENCE</p>
+          <h1>
+            A claim is a<br />
+            <span>starting point.</span>
+          </h1>
+          <p>
+            Find the evidence behind it. See what challenges it. Keep a brief
+            you can trace back to its sources.
+          </p>
+          <a className="about-start" href="/desk">
+            Open research desk <ArrowRight size={17} aria-hidden="true" />
+          </a>
+          <span className="about-free">
+            Start with the examples. No account needed.
+          </span>
+        </section>
+
+        <section className="about-context" aria-labelledby="about-scope">
+          <div>
+            <p className="desk-kicker">ONE FOCUSED COLLECTION</p>
+            <h2 id="about-scope">Chips. AI. The effect of controls.</h2>
           </div>
-          <aside
-            className="finding-panel"
-            aria-label="Current research finding"
-          >
-            <div className="finding-label">
-              <BookOpen size={16} aria-hidden="true" />
-              <span>The current finding</span>
-            </div>
-            <p className="finding-title">{researchData.meta.currentFinding}</p>
-            <p className="finding-context">
-              Useful capability has returned. The evidence still leaves
-              substantial costs and upstream dependencies unresolved.
+          <div>
+            <p>
+              The first collection examines how Chinese AI development has
+              responded to U.S. advanced-compute restrictions—from DeepSeek’s
+              efficiency gains to domestic accelerators and diverted supply.
             </p>
-            <a href="#matrix">
-              Compare the judgments <ArrowRight size={16} aria-hidden="true" />
+            <p className="about-stats">
+              {researchData.cases.length} cases · {researchData.evidence.length}{' '}
+              evidence records · {researchData.sources.length} sources
+            </p>
+            <a className="desk-text-button" href="/research">
+              Read the research <ArrowUpRight size={14} aria-hidden="true" />
             </a>
-          </aside>
+          </div>
         </section>
-        <div className="page-width">
-          <section className="research-stats" aria-label="Dataset summary">
-            <Stat value={researchData.cases.length} label="Response cases" />
-            <Stat
-              value={researchData.evidence.length}
-              label="Evidence records"
-            />
-            <Stat
-              value={researchData.sources.length}
-              label="Cited sources"
-              detail={
-                researchData.sources.filter((s) => s.primary).length +
-                ' primary'
-              }
-            />
-            <Stat
-              value={researchData.timeline.length}
-              label="Policy milestones"
-            />
-          </section>
+
+        <section
+          className="about-actions"
+          aria-labelledby="about-actions-title"
+        >
+          <h2 id="about-actions-title">What you can do.</h2>
+          <div>
+            <h3>Test a claim</h3>
+            <p>Compare an assertion with the reviewed record.</p>
+          </div>
+          <div>
+            <h3>Challenge your view</h3>
+            <p>
+              Bring the strongest qualifications and counterevidence forward.
+            </p>
+          </div>
+          <div>
+            <h3>Assess a new source</h3>
+            <p>
+              Paste a public excerpt and examine what it adds to this
+              collection.
+            </p>
+          </div>
+          <div>
+            <h3>Build a brief</h3>
+            <p>
+              Collect useful records and export a source-linked reading packet.
+            </p>
+          </div>
+        </section>
+
+        <section
+          className="about-questions"
+          aria-labelledby="about-questions-title"
+        >
+          <h2 id="about-questions-title">A few things to know.</h2>
+          <details>
+            <summary>Do I need a Jev account?</summary>
+            <p>
+              No. Saved examples, keyword search, source filters, and briefs
+              work without one. Your own TypeSafe API key enables custom Jev
+              assessments. Those runs use your account; adding a key alone does
+              not make a paid request.
+            </p>
+          </details>
+          <details>
+            <summary>What does Jev actually do?</summary>
+            <p>
+              It judges how evidence relates to your claim, ranks records for a
+              research question, or assesses a pasted source against six
+              research dimensions. Its assessments are provisional. A model’s
+              confidence is not the probability that a claim is true.
+            </p>
+          </details>
+          <details>
+            <summary>How current is the evidence?</summary>
+            <p>
+              The collection covers evidence through{' '}
+              {formatDate(researchData.meta.evidenceThrough)}, with targeted
+              corrections reviewed on {formatDate(researchData.meta.reviewedOn)}
+              . It is selective, not a live news search. New excerpts stay in
+              your workspace and do not change the published findings.
+            </p>
+          </details>
+          <details>
+            <summary>What happens to my key and research?</summary>
+            <p>
+              Your key stays in this tab’s memory until you disconnect, refresh,
+              or leave. An explicit run sends the key through this website’s
+              server to TypeSafe, along with your question, selected evidence,
+              and any supplied excerpt. This website does not save keys or
+              submitted text. TypeSafe’s data policies apply. Use a dedicated
+              key and public material. A request already received may incur
+              usage even if you cancel.
+            </p>
+            <a
+              href="https://typesafe.ai/legal/privacy-policy"
+              target="_blank"
+              rel="noreferrer"
+            >
+              Read TypeSafe’s privacy policy{' '}
+              <ArrowUpRight size={13} aria-hidden="true" />
+            </a>
+          </details>
+          <details>
+            <summary>Who made this?</summary>
+            <p>
+              Created by Moayd Ghazzawi. The underlying study,{' '}
+              <em>When Controls Raise the Cost</em>, keeps every judgment
+              connected to sources, counterevidence, and questions that could
+              change the conclusion.
+            </p>
+            <a href="/methodology">
+              Read the methodology <ArrowUpRight size={13} aria-hidden="true" />
+            </a>
+          </details>
+        </section>
+        <div className="about-end">
+          <h2>Follow a question further.</h2>
+          <a className="about-start" href="/desk">
+            Open research desk <ArrowRight size={17} aria-hidden="true" />
+          </a>
         </div>
-        <section className="page-width section-space" id="cases">
-          <div className="section-heading">
-            <div>
-              <p className="eyebrow">01 / Explore the responses</p>
-              <h2>{researchData.cases.length} cases. One common test.</h2>
-            </div>
-            <p>
-              Choose a case to examine its evidence, costs, and remaining
-              questions.
-            </p>
-          </div>
-          <CaseExplorer
-            cases={researchData.cases}
-            classifications={researchData.classifications}
-            evidence={researchData.evidence}
-            responseTypes={researchData.responseTypes}
-            sources={researchData.sources}
-          />
-        </section>
-        <section className="section-surface" id="matrix">
-          <div className="page-width section-space">
-            <div className="section-heading">
-              <div>
-                <p className="eyebrow">02 / Compare the outcomes</p>
-                <h2>Where each response holds up.</h2>
-              </div>
-              <p>
-                Read all cases across the six dimensions. Each judgment applies
-                to the specific control point examined.
-              </p>
-            </div>
-            <ComparisonMatrix
-              cases={researchData.cases}
-              classifications={researchData.classifications}
-            />
-          </div>
-        </section>
-        <section className="page-width section-space" id="timeline">
-          <div className="section-heading">
-            <div>
-              <p className="eyebrow">03 / Policy context</p>
-              <h2>A changing set of rules.</h2>
-            </div>
-            <p>
-              Dates distinguish announcements, effective rules, and suspensions.
-              Expand a milestone for its scope and original sources.
-            </p>
-          </div>
-          <ol className="policy-timeline">
-            {researchData.timeline.map((event, index) => (
-              <li key={event.id}>
-                <div className="timeline-date">
-                  <span className="record-number">
-                    {String(index + 1).padStart(2, '0')}
-                  </span>
-                  <time dateTime={event.date}>{event.displayDate}</time>
-                </div>
-                <details className="timeline-event">
-                  <summary>
-                    <span>
-                      <span className="timeline-status">{event.status}</span>
-                      <h3>{event.title}</h3>
-                    </span>
-                    <span className="expand-symbol" aria-hidden="true">
-                      +
-                    </span>
-                  </summary>
-                  <div className="timeline-body">
-                    <p>{event.summary}</p>
-                    <p className="timeline-caveat">
-                      <strong>Scope and caveat.</strong> {event.caveat}
-                    </p>
-                    <div className="timeline-sources">
-                      <span className="eyebrow">Original sources</span>
-                      {event.sourceIds.map((id) => {
-                        const source = sourceById.get(id)!;
-                        return (
-                          <a
-                            key={id}
-                            href={source.url}
-                            rel="noreferrer"
-                            target="_blank"
-                          >
-                            {source.organization}: {source.title}
-                            <ArrowUpRight size={16} aria-hidden="true" />
-                            <span className="sr-only"> (opens in new tab)</span>
-                          </a>
-                        );
-                      })}
-                    </div>
-                  </div>
-                </details>
-              </li>
-            ))}
-          </ol>
-        </section>
-        <section className="research-brief section-surface">
-          <div className="page-width section-space brief-grid">
-            <div>
-              <p className="eyebrow">The research in two minutes</p>
-              <h2>What the record supports.</h2>
-              <a className="text-link" href="/methodology">
-                Method and limitations{' '}
-                <ArrowRight size={16} aria-hidden="true" />
-              </a>
-            </div>
-            <div>
-              <p className="brief-copy">
-                {researchData.meta.conversationSummary}
-              </p>
-              <div className="brief-actions">
-                <a className="action-link" href="/evidence">
-                  Explore the evidence{' '}
-                  <ArrowRight size={16} aria-hidden="true" />
-                </a>
-                <a
-                  className="action-link secondary"
-                  download
-                  href="/data/research-dataset.json"
-                >
-                  <Download size={16} aria-hidden="true" /> Download research
-                  data
-                </a>
-              </div>
-            </div>
-          </div>
-        </section>
       </main>
       <SiteFooter />
     </>
-  );
-}
-
-function Stat({
-  label,
-  value,
-  detail,
-}: {
-  label: string;
-  value: number;
-  detail?: string;
-}) {
-  return (
-    <div className="research-stat">
-      <span className="stat-value">{String(value).padStart(2, '0')}</span>
-      <span className="stat-label">
-        {label}
-        {detail ? <small>{detail}</small> : null}
-      </span>
-    </div>
   );
 }

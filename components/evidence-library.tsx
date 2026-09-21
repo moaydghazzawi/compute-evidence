@@ -291,7 +291,7 @@ export function EvidenceLibrary({
                   </div>
                   <details className="evidence-details">
                     <summary>
-                      Inspect evidence and counterevidence{' '}
+                      Source details{' '}
                       <ChevronDown size={17} aria-hidden="true" />
                     </summary>
                     <div className="evidence-detail-body">
@@ -331,7 +331,7 @@ export function EvidenceLibrary({
                     <div>
                       <span>Applies to</span>
                       {item.caseIds.map((id) => (
-                        <a key={id} href={'/?case=' + id + '#cases'}>
+                        <a key={id} href={'/research?case=' + id + '#cases'}>
                           {data.cases.find((c) => c.id === id)?.shortTitle}
                           <ArrowUpRight size={13} aria-hidden="true" />
                         </a>

@@ -10,7 +10,7 @@
     "currentFinding": "One vendor-reported case weakens direct accelerator denial. None establishes broad supply-chain independence.",
     "summary": "The public record shows useful adaptation, a narrow case of functional substitution, and enforcement leakage. It does not establish broad supply-chain independence or measure how much extra cost the controls caused.",
     "conversationSummary": "Chinese AI progress is real, but progress and control failure are not synonyms. DeepSeek-V3 shows that efficient model and systems design can stretch a restricted Nvidia H800 fleet. Huawei’s Pangu Ultra shows that thousands of domestic Ascend accelerators can complete a very-large-model training run, weakening the narrow claim that access to top U.S. accelerators is indispensable. CloudMatrix384 shows that system design can recover useful inference performance by pooling many weaker devices. A U.S. prosecution shows that restricted H100 and H200 chips also moved through a diversion network. Each result carries a different implication. The Huawei cases still leave fabrication, high-bandwidth memory, power, networking, and economics unresolved. DeepSeek remained dependent on controlled foreign hardware. Smuggling is an enforcement failure, not technological independence. The strongest current reading is that the controls impose friction and shift costs rather than create an absolute barrier—and that only repeated, independently verified scale can show whether that friction is durable.",
-    "reviewedOn": "2026-09-11"
+    "reviewedOn": "2026-09-22"
   },
   "responseTypes": [
     {
@@ -437,7 +437,7 @@
       "id": "case-state-support",
       "title": "Tax preferences and local compute subsidies",
       "shortTitle": "State support evidence gap",
-      "date": "2025-06-21",
+      "date": "2025-06-13",
       "period": "2023–2026",
       "responseTypes": ["state-support-stockpiling"],
       "classification": "insufficient-evidence",
@@ -499,12 +499,12 @@
     {
       "id": "ev-deepseek-compute",
       "caseIds": ["case-deepseek-v3"],
-      "claim": "DeepSeek reports training a 671B-parameter MoE on 14.8 trillion tokens with 2.788 million H800 GPU-hours.",
+      "claim": "DeepSeek reports pre-training a 671B-parameter MoE on 14.8 trillion tokens and using 2.788 million H800 GPU-hours across all disclosed training stages.",
       "sourceId": "deepseek-v3-report",
       "sourceType": "Technical preprint",
       "publicationDate": "2024-12-27",
-      "accessDate": "2026-09-03",
-      "quotationOrData": "“2.788M H800 GPU hours.”",
+      "accessDate": "2026-09-22",
+      "quotationOrData": "“2.788M H800 GPU hours” for the full training run.",
       "location": "Abstract; section 1; Table 1",
       "counterevidence": "The run and benchmarks are author-reported and have not been independently reproduced end to end.",
       "confidence": "High",
@@ -518,8 +518,8 @@
       "sourceId": "deepseek-v3-report",
       "sourceType": "Technical preprint",
       "publicationDate": "2024-12-27",
-      "accessDate": "2026-09-03",
-      "quotationOrData": "Prior research and ablation costs “are not included.”",
+      "accessDate": "2026-09-22",
+      "quotationOrData": "The report excludes prior research and ablation experiments from its training-cost estimate.",
       "location": "Section 1, note immediately below Table 1",
       "counterevidence": "The narrow figure remains useful for comparing the disclosed final run if its scope is stated.",
       "confidence": "High",
@@ -563,8 +563,8 @@
       "sourceId": "deepseek-v3-repository",
       "sourceType": "Company repository",
       "publicationDate": "2024-12-26",
-      "accessDate": "2026-09-03",
-      "quotationOrData": "The release includes weights and inference examples for Nvidia, AMD, and Ascend.",
+      "accessDate": "2026-09-22",
+      "quotationOrData": "The repository publishes model weights and links to inference support for Nvidia, AMD, and Ascend hardware.",
       "location": "Repository README, model downloads and inference sections",
       "counterevidence": "Open weights make broad deployment and independent downstream testing possible.",
       "confidence": "High",
@@ -589,12 +589,12 @@
     {
       "id": "ev-pangu-codesign",
       "caseIds": ["case-pangu-ultra"],
-      "claim": "The model and execution plan were reshaped around NPU constraints, with cumulative interventions raising reported throughput 58.7 percent.",
+      "claim": "The model and execution plan were reshaped around NPU constraints, with cumulative interventions raising reported model FLOPs utilization (MFU) by 58.7 percent relative to the baseline.",
       "sourceId": "pangu-ultra-paper",
       "sourceType": "Technical preprint",
       "publicationDate": "2025-05-07",
-      "accessDate": "2026-09-03",
-      "quotationOrData": "6,000 NPUs; 30% MFU; hierarchical all-to-all; recomputation and host swapping.",
+      "accessDate": "2026-09-22",
+      "quotationOrData": "Table 5 reports a 58.7% relative MFU improvement, reaching 30.0% MFU on 6,000 NPUs; techniques include hierarchical all-to-all, recomputation, and host swapping.",
       "location": "Section 4.5, Table 5",
       "counterevidence": "Thirty percent MFU still implies substantial unused peak compute, and no comparable counterfactual run is public.",
       "confidence": "High",
@@ -664,12 +664,12 @@
     {
       "id": "ev-cloudmatrix-limits",
       "caseIds": ["case-cloudmatrix"],
-      "claim": "Tighter latency requirements sharply reduced reported per-NPU throughput, exposing the workload sensitivity of the comparison.",
+      "claim": "CloudMatrix-Infer reduced batch size to meet tighter latency targets, lowering reported per-NPU throughput and illustrating the latency–throughput trade-off.",
       "sourceId": "cloudmatrix-paper",
       "sourceType": "Technical preprint",
       "publicationDate": "2025-06-19",
-      "accessDate": "2026-09-03",
-      "quotationOrData": "Throughput fell from 1,943 to 538 tokens/s/NPU as the target tightened from about 50 ms to 15 ms.",
+      "accessDate": "2026-09-22",
+      "quotationOrData": "Throughput fell from 1,943 to 538 tokens/s/NPU as the latency target tightened from 50 ms to 15 ms and batch size per NPU fell from 96 to 8.",
       "location": "Section 5.2, Table 4",
       "counterevidence": "The system still met the stated tighter latency target and maintained useful throughput.",
       "confidence": "High",
@@ -757,10 +757,10 @@
       "claim": "A 2025 Hangzhou policy authorized annual compute vouchers and large-model training support, but no reviewed award record ties that support to DeepSeek-V3.",
       "sourceId": "hangzhou-ai-policy-2025",
       "sourceType": "Government policy",
-      "publicationDate": "2025-06-21",
-      "accessDate": "2026-09-03",
+      "publicationDate": null,
+      "accessDate": "2026-09-22",
       "quotationOrData": "Annual compute-voucher ceiling: CNY 250 million; qualifying model-training support: up to CNY 50 million.",
-      "location": "Measures on compute services and large-model training support",
+      "location": "Appendix, sections (1) and (3), pages 11–12. Notice dated 13 June 2025; effective 15 July 2025. Exact publication date not verified.",
       "counterevidence": "The policy postdates the DeepSeek-V3 release and does not prove DeepSeek received a grant.",
       "confidence": "Moderate",
       "remainingUncertainty": "Recipients, disbursements, hardware origin, and capability produced are not public in the reviewed record.",
@@ -1010,7 +1010,7 @@
       "url": "https://arxiv.org/abs/2412.19437",
       "sourceType": "Technical preprint",
       "publicationDate": "2024-12-27",
-      "accessDate": "2026-09-03",
+      "accessDate": "2026-09-22",
       "primary": true
     },
     {
@@ -1040,7 +1040,7 @@
       "url": "https://github.com/deepseek-ai/DeepSeek-V3",
       "sourceType": "Company repository",
       "publicationDate": "2024-12-26",
-      "accessDate": "2026-09-03",
+      "accessDate": "2026-09-22",
       "primary": true
     },
     {
@@ -1050,7 +1050,7 @@
       "url": "https://arxiv.org/html/2505.04519",
       "sourceType": "Technical preprint",
       "publicationDate": "2025-05-07",
-      "accessDate": "2026-09-03",
+      "accessDate": "2026-09-22",
       "primary": true
     },
     {
@@ -1080,7 +1080,7 @@
       "url": "https://arxiv.org/html/2506.12708v3",
       "sourceType": "Technical preprint",
       "publicationDate": "2025-06-19",
-      "accessDate": "2026-09-03",
+      "accessDate": "2026-09-22",
       "primary": true
     },
     {
@@ -1125,12 +1125,12 @@
     },
     {
       "id": "hangzhou-ai-policy-2025",
-      "title": "杭州市人民政府办公厅关于促进杭州市人工智能产业高质量发展若干措施的通知 (Hangzhou measures supporting high-quality AI-industry development; translated title)",
+      "title": "杭州市人民政府关于印发杭州市加快建设人工智能创新高地实施方案（2025年版）的通知 (Hangzhou AI innovation highland implementation plan, 2025 edition; translated title)",
       "organization": "Hangzhou Municipal People’s Government",
-      "url": "https://zjjcmspublic.oss-cn-hangzhou-zwynet-d01-a.internet.cloud.zj.gov.cn/jcms_files/jcms1/web149/site/attach/0/a6c3459cc18f497c97e7e592bd9e318f.pdf",
+      "url": "https://zfgb.hangzhou.gov.cn/upload/default/bigfile/2025/06/25/20250625_29d2c8f4d7d82971e34da031a1e6b19b.pdf",
       "sourceType": "Government policy",
-      "publicationDate": "2025-06-21",
-      "accessDate": "2026-09-03",
+      "publicationDate": null,
+      "accessDate": "2026-09-22",
       "primary": true
     },
     {

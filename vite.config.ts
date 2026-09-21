@@ -53,8 +53,17 @@ export default defineConfig(async () => {
   return {
     css: { postcss: { plugins: [tailwindcss()] } },
     server: {
+      fs: {
+        // Git exclusions are not HTTP access controls. Preserve Vite's secret
+        // exclusions and also keep local research/audit files out of previews.
+        deny: ['.env', '.env.*', '*.{crt,pem}', '**/.git/**', '**/private/**'],
+      },
       watch: isCodexSeatbeltSandbox
-        ? { useFsEvents: false, usePolling: true, ignored: generatedBrowserPaths }
+        ? {
+            useFsEvents: false,
+            usePolling: true,
+            ignored: generatedBrowserPaths,
+          }
         : { ignored: generatedBrowserPaths },
     },
     plugins: [

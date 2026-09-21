@@ -88,7 +88,7 @@ export default function MethodologyPage() {
                   ),
                 )}
               </ol>
-              <a className="text-link" href="/#matrix">
+              <a className="text-link" href="/research#matrix">
                 Compare all six dimensions{' '}
                 <ArrowRight size={16} aria-hidden="true" />
               </a>
@@ -109,7 +109,7 @@ export default function MethodologyPage() {
                     <p>{item.definition}</p>
                     <a
                       className="text-link"
-                      href={'/?judgment=' + item.id + '#cases'}
+                      href={'/research?judgment=' + item.id + '#cases'}
                     >
                       Explore matching cases{' '}
                       <ArrowUpRight size={14} aria-hidden="true" />

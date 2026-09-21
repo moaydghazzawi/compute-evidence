@@ -26,7 +26,7 @@ export default async function EvidencePage({
           <p className="eyebrow">The research record</p>
           <div className="subpage-heading">
             <div>
-              <h1>Follow the evidence.</h1>
+              <h1>The source record.</h1>
               <p>
                 Inspect the source behind each claim, its strongest
                 qualification, and the questions still open.
