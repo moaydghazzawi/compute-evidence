@@ -14,12 +14,12 @@ A public research tool by Moayd Ghazzawi. Test claims, examine counterevidence, 
 
 ## Existing public links
 
-- [Research product](https://when-controls-raise-the-cost.moaydghazzawi.com)
+- [Research product](https://compute-evidence.moaydghazzawi.com)
 - [GitHub repository](https://github.com/moaydghazzawi/when-controls-raise-the-cost)
-- [Evidence library](https://when-controls-raise-the-cost.moaydghazzawi.com/evidence)
-- [Methodology](https://when-controls-raise-the-cost.moaydghazzawi.com/methodology)
-- [Complete JSON dataset](https://when-controls-raise-the-cost.moaydghazzawi.com/data/research-dataset.json)
-- [Complete CSV evidence export](https://when-controls-raise-the-cost.moaydghazzawi.com/data/evidence.csv)
+- [Evidence library](https://compute-evidence.moaydghazzawi.com/evidence)
+- [Methodology](https://compute-evidence.moaydghazzawi.com/methodology)
+- [Complete JSON dataset](https://compute-evidence.moaydghazzawi.com/data/research-dataset.json)
+- [Complete CSV evidence export](https://compute-evidence.moaydghazzawi.com/data/evidence.csv)
 
 ## Tool
 

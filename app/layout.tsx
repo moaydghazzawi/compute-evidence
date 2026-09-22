@@ -1,13 +1,11 @@
 import type { Metadata } from 'next';
-import { TOOL_NAME, TOOL_DESCRIPTION } from '@/lib/site-identity';
+import { SITE_URL, TOOL_NAME, TOOL_DESCRIPTION } from '@/lib/site-identity';
 
 import './globals.css';
 import './refinement.css';
 import './research-desk.css';
 
-const configuredSiteUrl =
-  process.env.NEXT_PUBLIC_SITE_URL ??
-  'https://when-controls-raise-the-cost.moaydghazzawi.com';
+const configuredSiteUrl = process.env.NEXT_PUBLIC_SITE_URL ?? SITE_URL;
 const publicBaseUrl = configuredSiteUrl
   ? new URL(configuredSiteUrl)
   : undefined;

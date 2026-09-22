@@ -280,7 +280,7 @@ export function renderReport(report) {
       '',
       row.claim,
       '',
-      `[Source](${row.sourceUrl}) · [Evidence card](https://when-controls-raise-the-cost.moaydghazzawi.com/evidence#${encodeURIComponent(row.id)})`,
+      `[Source](${row.sourceUrl}) · [Evidence card](https://compute-evidence.moaydghazzawi.com/evidence#${encodeURIComponent(row.id)})`,
       '',
       `Result: **${row.status}**. ${row.flags.join('; ') || 'No issue detected in supplied text.'}`,
       '',

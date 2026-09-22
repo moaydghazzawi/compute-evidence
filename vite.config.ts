@@ -19,7 +19,7 @@ const generatedBrowserPaths = [
 ];
 
 const localBindingConfig = {
-  main: 'vinext/server/fetch-handler',
+  main: './worker.ts',
   compatibility_flags: ['nodejs_compat'],
   d1_databases: d1
     ? [

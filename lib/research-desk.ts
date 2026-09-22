@@ -1,4 +1,5 @@
 import type { Evidence, ResearchData, Source } from './research-types';
+import { SITE_URL } from './site-identity.ts';
 
 export const DESK_MODEL = 'jev-1.13.0';
 export const MAX_QUERY = 1200;
@@ -328,7 +329,7 @@ export function briefMarkdown(
       `Source URL: ${source.url}`,
       `Location: ${item.location}`,
       `Publication date: ${source.publicationDate ?? 'Not established'}`,
-      `Evidence record: https://when-controls-raise-the-cost.moaydghazzawi.com/evidence#${item.id}`,
+      `Evidence record: ${SITE_URL}/evidence#${item.id}`,
       '',
     );
   }

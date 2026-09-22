@@ -8,7 +8,9 @@ The first research collection is *When Controls Raise the Cost: China’s Respon
 > Evidence reviewed through: 3 September 2026<br>
 > Targeted research review and tool redesign: 22 September 2026
 
-[Live research site](https://when-controls-raise-the-cost.moaydghazzawi.com) · [Public GitHub repository](https://github.com/moaydghazzawi/when-controls-raise-the-cost)
+[Live research site](https://compute-evidence.moaydghazzawi.com) · [Public GitHub repository](https://github.com/moaydghazzawi/when-controls-raise-the-cost)
+
+The public product is Compute Evidence. The original `when-controls-raise-the-cost.moaydghazzawi.com` address redirects page visits to the new domain, preserving paths and query parameters. Requests from already-open research desks continue on their original origin.
 
 This project asks:
 
